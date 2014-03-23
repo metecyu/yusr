@@ -1,0 +1,71 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-3-23 22:49:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.metecyu.yusr.model.User" table="yu_user" catalog="yusr">
+        <id name="id" type="string">
+            <column name="id" length="200" />
+            <generator class="uuid.hex"></generator>
+        </id>
+        <property name="loginid" type="string">
+            <column name="loginid" length="200">
+                <comment>111</comment>
+            </column>
+        </property>
+        <property name="username" type="string">
+            <column name="username" length="200" />
+        </property>
+        <property name="iseffect" type="string">
+            <column name="iseffect" length="200" />
+        </property>
+        <property name="password" type="string">
+            <column name="password" length="200" />
+        </property>
+        <property name="birthday" type="date">
+            <column name="birthday" length="10" />
+        </property>
+        <property name="mobile" type="string">
+            <column name="mobile" length="200" />
+        </property>
+        <property name="fjh" type="string">
+            <column name="fjh" length="200" />
+        </property>
+        <property name="fphone" type="string">
+            <column name="fphone" length="200" />
+        </property>
+        <property name="workstate" type="string">
+            <column name="workstate" length="200" />
+        </property>
+        <property name="orgtype" type="string">
+            <column name="orgtype" length="200" />
+        </property>
+        <property name="sfzid" type="string">
+            <column name="sfzid" length="200" />
+        </property>
+        <property name="duty" type="string">
+            <column name="duty" length="200" />
+        </property>
+        <property name="dutydetails" type="string">
+            <column name="dutydetails" length="200" />
+        </property>
+        <set name="deptRoleRels" table="yu_deptrolerel" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userid" length="200" />
+            </key>
+            <one-to-many class="com.metecyu.yusr.model.DeptRoleRel" />
+        </set>
+        <set name="rolerels" table="yu_rolerel" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userid" length="200" />
+            </key>
+            <one-to-many class="com.metecyu.yusr.model.Rolerel" />
+        </set>
+        <set name="userDeptRels" table="yu_userdeptrel" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="userid" length="200" />
+            </key>
+            <one-to-many class="com.metecyu.yusr.model.UserDeptRel" />
+        </set>
+    </class>
+</hibernate-mapping>

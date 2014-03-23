@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-3-23 22:49:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.metecyu.yusr.model.Dept" table="yu_dept" catalog="yusr">
+        <id name="id" type="string">
+            <column name="id" length="200" />
+            <generator class="assigned"></generator>
+        </id>
+        <property name="deptname" type="string">
+            <column name="deptname" length="200" />
+        </property>
+        <property name="deptwholename" type="string">
+            <column name="deptwholename" length="200" />
+        </property>
+        <property name="iseffect" type="string">
+            <column name="iseffect" length="200" />
+        </property>
+        <property name="type" type="string">
+            <column name="type" length="200" />
+        </property>
+        <property name="orderno" type="java.lang.Integer">
+            <column name="orderno" />
+        </property>
+        <set name="userDeptRels" table="yu_userdeptrel" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="deptid" length="200" />
+            </key>
+            <one-to-many class="com.metecyu.yusr.model.UserDeptRel" />
+        </set>
+        <set name="deptRoleRels" table="yu_deptrolerel" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="deptid" length="200" />
+            </key>
+            <one-to-many class="com.metecyu.yusr.model.DeptRoleRel" />
+        </set>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014-3-23 22:49:11 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="com.metecyu.yusr.model.Rolerel" table="yu_rolerel" catalog="yusr">
+        <id name="id" type="string">
+            <column name="id" length="200" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="role" class="com.metecyu.yusr.model.Role" fetch="select">
+            <column name="roleid" length="200" />
+        </many-to-one>
+        <many-to-one name="user" class="com.metecyu.yusr.model.User" fetch="select">
+            <column name="userid" length="200" />
+        </many-to-one>
+        <property name="orderno" type="java.lang.Integer">
+            <column name="orderno" />
+        </property>
+    </class>
+</hibernate-mapping>

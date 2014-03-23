@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-reverse-engineering PUBLIC "-//Hibernate/Hibernate Reverse Engineering DTD 3.0//EN" "http://hibernate.sourceforge.net/hibernate-reverse-engineering-3.0.dtd" >
+
+<hibernate-reverse-engineering>
+	<table-filter match-catalog="yusr" match-name="yu_dept" />
+	<table-filter match-catalog="yusr" match-name="yu_deptrolerel" />
+	<table-filter match-catalog="yusr" match-name="yu_role" />
+	<table-filter match-catalog="yusr" match-name="yu_rolerel" />
+	<table-filter match-catalog="yusr" match-name="yu_user" />
+	<table-filter match-catalog="yusr" match-name="yu_userdeptrel" />
+<table catalog="yusr" name="yu_user"
+	class="com.metecyu.yusr.model.User">
+<primary-key>
+	<generator class="uuid.hex"></generator>
+</primary-key>
+<column name="id"></column>
+	<column name="loginid"></column>
+	<column name="username"></column>
+	<column name="iseffect"></column>
+	<column name="password"></column>
+	<column name="birthday"></column>
+	<column name="mobile"></column>
+	<column name="fjh"></column>
+	<column name="fphone"></column>
+	<column name="workstate"></column>
+	<column name="orgtype"></column>
+	<column name="sfzid"></column>
+	<column name="duty"></column>
+	<column name="dutydetails"></column>
+</table>
+<table catalog="yusr" name="yu_dept"
+	class="com.metecyu.yusr.model.Dept">
+	<primary-key>
+		<generator class="assigned"></generator>
+	</primary-key>
+	<column name="id"></column>
+	<column name="deptname"></column>
+	<column name="deptholename"></column>
+	<column name="iseffect"></column>
+	<column name="type"></column>
+	<column name="orderno"></column>
+</table>
+<table catalog="yusr" name="yu_rolerel"
+		class="com.metecyu.yusr.model.Rolerel">
+		<primary-key></primary-key>
+		<column name="id"></column>
+		<column name="userid"></column>
+		<column name="roleid"></column>
+		<column name="orderno"></column>
+	</table>
+<table catalog="yusr" name="yu_role"
+	class="com.metecyu.yusr.model.Role">
+	<primary-key>
+		<generator class="uuid.hex"></generator>
+	</primary-key>
+	<column name="id"></column>
+	<column name="rolename"></column>
+	<column name="rolesign"></column>
+	<column name="iseffect"></column>
+	<column name="type"></column>
+	<column name="orderno"></column>
+</table>
+<table catalog="yusr" name="yu_deptrolerel"
+	class="com.metecyu.yusr.model.DeptRoleRel">
+	<primary-key>
+		<generator class="uuid.hex"></generator>
+	</primary-key>
+	<column name="id"></column>
+	<column name="userid"></column>
+	<column name="roleid"></column>
+	<column name="orderno"></column>
+	<column name="deptid"></column>
+</table>
+<table catalog="yusr" name="yu_userdeptrel"
+	class="com.metecyu.yusr.model.UserDeptRel">
+	<primary-key>
+		<generator class="uuid.hex"></generator>
+	</primary-key>
+	<column name="id"></column>
+	<column name="userid"></column>
+	<column name="deptid"></column>
+	<column name="orderno"></column>
+	<column name="ismain"></column>
+</table>
+</hibernate-reverse-engineering>
