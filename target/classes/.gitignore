@@ -9,3 +9,9 @@
 /com
 /snippet
 /com
+/1
+/applicationContext.xml
+/com
+/hibernate.cfg.xml
+/hibernate.reveng.xml
+/log4j.xml

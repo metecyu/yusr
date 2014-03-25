@@ -3,17 +3,16 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html>
   <head>
-    
+    <meta charset="utf-8">
     <title>内部项目信息管理平台</title>
-
 	<!-- 最新 Bootstrap 核心 CSS 文件 -->
-	<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap.min.css">
+	<link rel="stylesheet" href="cssGroup/bootstrap3/css/bootstrap.min.css">
 
 	<!-- 可选的Bootstrap主题文件（一般不用引入） -->
-	<link rel="stylesheet" href="http://cdn.bootcss.com/twitter-bootstrap/3.0.3/css/bootstrap-theme.min.css">
+	<link rel="stylesheet" href="cssGroup/bootstrap3/css/bootstrap-theme.min.css">
 
 	<!-- jQuery文件。务必在bootstrap.min.js 之前引入 -->
-	<script src="http://cdn.bootcss.com/jquery/1.10.2/jquery.min.js"></script>
+	<script src="cssGroup/bootstrap3/js/jquery.min.js"></script>
 
 <!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
 	
@@ -21,27 +20,113 @@
 		
 
 		<style type="text/css">
-				.container {background-color: red;width:1024}
+				.container {
+					width:1024px;
+					margin:auto;
+					
+				}
+				.top {
+					width:1024px;
+					height:50px;
+					margin:auto;
+					background-color: #f3f3f3;
+					background-image: -moz-linear-gradient(#f9f9f9, #f3f3f3);
+					background-image: -webkit-linear-gradient(#f9f9f9, #f3f3f3);
+					background-image: linear-gradient(#f9f9f9, #f3f3f3);
+					background-repeat: repeat-x;
+				}
+				
+				.menu {
+					margin-top:90px;
+					
+				}
+				
+				.content{
+					margin-top:30px;
+					height:500px;
+				}
+				.tail{
+
+					height:50px;
+					text-align:right;
+				}
+				
+				
+	
 
 		</style>
 	
   </head>
 
-
   <div class="container">
 		<div class="row">
-		  <div class="col-xs-12 col-sm-6 col-md-8">.col-xs-12 .col-sm-6 .col-md-8</div>
-		  <div class="col-xs-6 col-md-4">.col-xs-6 .col-md-4</div>
+			  <div class="col-md-12">
+				  	<div class="top">
+				  			<ol class="breadcrumb">
+							<!--   <li><a href="#">Home</a></li>
+							  <li><a href="#">Library</a></li>
+							  <li class="active">Data</li> -->
+							</ol>
+				  	</div>
+			  </div>
 		</div>
 		<div class="row">
-		  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-		  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
-		  <!-- Optional: clear the XS cols if their content doesn't match in height -->
-		  <div class="clearfix visible-xs"></div>
-		  <div class="col-xs-6 col-sm-4">.col-xs-6 .col-sm-4</div>
+			  <div class="col-md-2">
+			  		<div class='menu'>
+				  		<div class="list-group">
+						  <a href="#" class="list-group-item">
+						    <h4 class="list-group-item-heading">用户管理</h4>
+						  </a>  
+						  <a href="#" class="list-group-item">
+						    <h4 class="list-group-item-heading">部门管理</h4>
+						  </a>
+						  <a href="#" class="list-group-item">
+						    <h4 class="list-group-item-heading">角色管理</h4>
+						  </a>
+						</div>
+					</div>
+			  </div><!-- end left area -->
+			  
+			  <div class="col-md-10">
+			  	<div class='content'>
+			  		<h2 style='text-align:center'>部门清单</h2>
+			  		<button type="button" class="btn btn-primary" style='margin:"0px auto";float:right;'>新建部门</button>
+		
+			  		<table class="table table-hover">
+			  			<thead>
+				  			<tr>
+								<th>部门</th>
+								<th>人数</th>
+								<th>负责人</th>
+							</tr>
+						</thead>
+						<tbody>
+						<tr>
+							<td>办公室</td>
+							<td>12人 </td>
+							<td>陆浩 </td>
+						</tr>
+						<tr>
+							<td>办公室</td>
+							<td>12人 </td>
+							<td>陆浩 </td>
+						</tr>
+						<tr>
+							<td>办公室</td>
+							<td>12人 </td>
+							<td>陆浩 </td>
+						</tr>
+						</tbody>
+					</table>
+			  	</div>
+			  </div><!-- end right area -->
 		</div>
-
-</div>
+		<div class="row">
+			  <div class="col-md-12">
+			  	<div class='tail'> 2014 MetecYu </div>
+			  </div>
+		</div>
+</div><!-- end container -->
 
 
 
