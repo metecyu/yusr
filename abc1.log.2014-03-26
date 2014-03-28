@@ -1,0 +1,170 @@
+14:09:53,086 INFO - org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(315) | Loading XML bean definitions from class path resource [applicationContext.xml]
+14:09:54,162 INFO - org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(315) | Loading XML bean definitions from class path resource [hibernate.cfg.xml]
+14:10:02,961 INFO - org.springframework.context.support.AbstractApplicationContext.prepareRefresh(495) | Refreshing org.springframework.context.support.GenericApplicationContext@222b360: startup date [Wed Mar 26 14:10:02 CST 2014]; root of context hierarchy
+14:10:03,504 INFO - org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(557) | Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@21d497e: defining beans [sessionFactory,transactionManager,txAdvice,org.springframework.aop.config.internalAutoProxyCreator,allServiceMethod,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor#0,deptDAO,userDAO,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,deptService,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+14:10:03,819 INFO - org.hibernate.cfg.Environment.<clinit>(514) | Hibernate 3.2.6
+14:10:03,824 INFO - org.hibernate.cfg.Environment.<clinit>(547) | hibernate.properties not found
+14:10:03,836 INFO - org.hibernate.cfg.Environment.buildBytecodeProvider(681) | Bytecode provider name : cglib
+14:10:03,841 INFO - org.hibernate.cfg.Environment.<clinit>(598) | using JDK 1.4 java.sql.Timestamp handling
+14:10:03,894 INFO - org.hibernate.cfg.Configuration.configure(1447) | configuring from url: file:/D:/eclipseWorkspace-3.7_fgw3/yusr/target/classes/hibernate.cfg.xml
+14:10:04,074 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/Dept.hbm.xml
+14:10:04,323 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.Dept -> yu_dept
+14:10:04,405 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/DeptRoleRel.hbm.xml
+14:10:04,413 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.DeptRoleRel -> yu_deptrolerel
+14:10:04,535 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/Role.hbm.xml
+14:10:04,557 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.Role -> yu_role
+14:10:04,558 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/Rolerel.hbm.xml
+14:10:04,583 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.Rolerel -> yu_rolerel
+14:10:04,583 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/User.hbm.xml
+14:10:04,594 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.User -> yu_user
+14:10:04,595 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/UserDeptRel.hbm.xml
+14:10:04,608 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.UserDeptRel -> yu_userdeptrel
+14:10:04,609 INFO - org.hibernate.cfg.Configuration.doConfigure(1547) | Configured SessionFactory: null
+14:10:04,617 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.Dept.userDeptRels -> yu_userdeptrel
+14:10:04,619 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.Dept.deptRoleRels -> yu_deptrolerel
+14:10:04,619 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.Role.rolerels -> yu_rolerel
+14:10:04,620 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.User.deptRoleRels -> yu_deptrolerel
+14:10:04,620 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.User.rolerels -> yu_rolerel
+14:10:04,621 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.User.userDeptRels -> yu_userdeptrel
+14:10:04,624 INFO - org.springframework.orm.hibernate3.LocalSessionFactoryBean.buildSessionFactory(777) | Building new Hibernate SessionFactory
+14:10:04,711 INFO - org.hibernate.connection.DriverManagerConnectionProvider.configure(41) | Using Hibernate built-in connection pool (not for production use!)
+14:10:04,711 INFO - org.hibernate.connection.DriverManagerConnectionProvider.configure(42) | Hibernate connection pool size: 20
+14:10:04,712 INFO - org.hibernate.connection.DriverManagerConnectionProvider.configure(45) | autocommit mode: false
+14:10:04,793 INFO - org.hibernate.connection.DriverManagerConnectionProvider.configure(80) | using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3306/yusr?useUnicode=true&characterEncoding=UTF-8
+14:10:04,795 INFO - org.hibernate.connection.DriverManagerConnectionProvider.configure(86) | connection properties: {user=root, password=****}
+14:10:05,551 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(89) | RDBMS: MySQL, version: 5.5.15-log
+14:10:05,552 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(90) | JDBC driver: MySQL-AB JDBC Driver, version: mysql-connector-java-5.1.9 ( Revision: ${svn.Revision} )
+14:10:05,633 INFO - org.hibernate.dialect.Dialect.<init>(152) | Using dialect: org.hibernate.dialect.MySQLDialect
+14:10:05,643 INFO - org.hibernate.transaction.TransactionFactoryFactory.buildTransactionFactory(34) | Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+14:10:05,646 INFO - org.hibernate.transaction.TransactionManagerLookupFactory.getTransactionManagerLookup(33) | No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+14:10:05,647 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(143) | Automatic flush during beforeCompletion(): disabled
+14:10:05,648 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(147) | Automatic session close at end of transaction: disabled
+14:10:05,648 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(154) | JDBC batch size: 15
+14:10:05,649 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(157) | JDBC batch updates for versioned data: disabled
+14:10:05,651 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(162) | Scrollable result sets: enabled
+14:10:05,652 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(170) | JDBC3 getGeneratedKeys(): enabled
+14:10:05,652 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(178) | Connection release mode: auto
+14:10:05,654 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(202) | Maximum outer join fetch depth: 2
+14:10:05,655 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(205) | Default batch fetch size: 1
+14:10:05,655 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(209) | Generate SQL with comments: disabled
+14:10:05,656 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(213) | Order SQL updates by primary key: disabled
+14:10:05,656 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(217) | Order SQL inserts for batching: disabled
+14:10:05,658 INFO - org.hibernate.cfg.SettingsFactory.createQueryTranslatorFactory(386) | Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+14:10:05,661 INFO - org.hibernate.hql.ast.ASTQueryTranslatorFactory.<init>(24) | Using ASTQueryTranslatorFactory
+14:10:05,662 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(225) | Query language substitutions: {}
+14:10:05,663 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(230) | JPA-QL strict compliance: disabled
+14:10:05,664 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(235) | Second-level cache: enabled
+14:10:05,664 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(239) | Query cache: disabled
+14:10:05,666 INFO - org.hibernate.cfg.SettingsFactory.createCacheProvider(373) | Cache provider: org.hibernate.cache.NoCacheProvider
+14:10:05,667 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(254) | Optimize cache for minimal puts: disabled
+14:10:05,667 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(263) | Structured second-level cache entries: disabled
+14:10:05,674 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(290) | Statistics: disabled
+14:10:05,675 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(294) | Deleted entity synthetic identifier rollback: disabled
+14:10:05,676 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(309) | Default entity-mode: pojo
+14:10:05,676 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(313) | Named query checking : enabled
+14:10:05,782 INFO - org.hibernate.impl.SessionFactoryImpl.<init>(161) | building session factory
+14:10:06,551 INFO - org.hibernate.impl.SessionFactoryObjectFactory.addInstance(82) | Not binding factory to JNDI, no JNDI name configured
+14:10:07,111 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.orm.hibernate3.support.HibernateDaoSupport.setSessionFactory(org.hibernate.SessionFactory)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:07,112 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final org.hibernate.SessionFactory org.springframework.orm.hibernate3.support.HibernateDaoSupport.getSessionFactory()] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:07,113 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.orm.hibernate3.support.HibernateDaoSupport.setHibernateTemplate(org.springframework.orm.hibernate3.HibernateTemplate)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:07,114 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final org.springframework.orm.hibernate3.HibernateTemplate org.springframework.orm.hibernate3.support.HibernateDaoSupport.getHibernateTemplate()] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:07,115 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:07,199 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.orm.hibernate3.support.HibernateDaoSupport.setSessionFactory(org.hibernate.SessionFactory)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:07,199 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final org.hibernate.SessionFactory org.springframework.orm.hibernate3.support.HibernateDaoSupport.getSessionFactory()] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:07,200 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.orm.hibernate3.support.HibernateDaoSupport.setHibernateTemplate(org.springframework.orm.hibernate3.HibernateTemplate)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:07,200 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final org.springframework.orm.hibernate3.HibernateTemplate org.springframework.orm.hibernate3.support.HibernateDaoSupport.getHibernateTemplate()] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:07,201 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:07,268 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests.setApplicationContext(org.springframework.context.ApplicationContext)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:07,322 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests.setApplicationContext(org.springframework.context.ApplicationContext)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:08,413 INFO - com.metecyu.flow.service.DeptServiceTest.testSave(40) | 部门id:bgs4
+14:10:08,454 INFO - com.metecyu.flow.service.DeptServiceTest.findAllDept(47) | 部门数量:1
+14:10:08,557 INFO - org.springframework.context.support.AbstractApplicationContext.doClose(1020) | Closing org.springframework.context.support.GenericApplicationContext@222b360: startup date [Wed Mar 26 14:10:02 CST 2014]; root of context hierarchy
+14:10:08,563 INFO - org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(433) | Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@21d497e: defining beans [sessionFactory,transactionManager,txAdvice,org.springframework.aop.config.internalAutoProxyCreator,allServiceMethod,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor#0,deptDAO,userDAO,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,deptService,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+14:10:08,568 INFO - org.springframework.orm.hibernate3.AbstractSessionFactoryBean.destroy(246) | Closing Hibernate SessionFactory
+14:10:08,569 INFO - org.hibernate.impl.SessionFactoryImpl.close(769) | closing
+14:10:08,570 INFO - org.hibernate.connection.DriverManagerConnectionProvider.close(147) | cleaning up connection pool: jdbc:mysql://localhost:3306/yusr?useUnicode=true&characterEncoding=UTF-8
+14:10:50,161 INFO - org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(315) | Loading XML bean definitions from class path resource [applicationContext.xml]
+14:10:50,796 INFO - org.springframework.beans.factory.xml.XmlBeanDefinitionReader.loadBeanDefinitions(315) | Loading XML bean definitions from class path resource [hibernate.cfg.xml]
+14:10:56,429 INFO - org.springframework.context.support.AbstractApplicationContext.prepareRefresh(495) | Refreshing org.springframework.context.support.GenericApplicationContext@222b360: startup date [Wed Mar 26 14:10:56 CST 2014]; root of context hierarchy
+14:10:56,705 INFO - org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(557) | Pre-instantiating singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@21d497e: defining beans [sessionFactory,transactionManager,txAdvice,org.springframework.aop.config.internalAutoProxyCreator,allServiceMethod,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor#0,deptDAO,userDAO,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,deptService,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+14:10:56,848 INFO - org.hibernate.cfg.Environment.<clinit>(514) | Hibernate 3.2.6
+14:10:56,851 INFO - org.hibernate.cfg.Environment.<clinit>(547) | hibernate.properties not found
+14:10:56,855 INFO - org.hibernate.cfg.Environment.buildBytecodeProvider(681) | Bytecode provider name : cglib
+14:10:56,859 INFO - org.hibernate.cfg.Environment.<clinit>(598) | using JDK 1.4 java.sql.Timestamp handling
+14:10:56,901 INFO - org.hibernate.cfg.Configuration.configure(1447) | configuring from url: file:/D:/eclipseWorkspace-3.7_fgw3/yusr/target/classes/hibernate.cfg.xml
+14:10:56,996 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/Dept.hbm.xml
+14:10:57,047 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.Dept -> yu_dept
+14:10:57,087 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/DeptRoleRel.hbm.xml
+14:10:57,092 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.DeptRoleRel -> yu_deptrolerel
+14:10:57,147 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/Role.hbm.xml
+14:10:57,154 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.Role -> yu_role
+14:10:57,155 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/Rolerel.hbm.xml
+14:10:57,163 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.Rolerel -> yu_rolerel
+14:10:57,164 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/User.hbm.xml
+14:10:57,173 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.User -> yu_user
+14:10:57,174 INFO - org.hibernate.cfg.Configuration.addResource(559) | Reading mappings from resource : com/metecyu/yusr/model/UserDeptRel.hbm.xml
+14:10:57,181 INFO - org.hibernate.cfg.HbmBinder.bindRootPersistentClassCommonValues(300) | Mapping class: com.metecyu.yusr.model.UserDeptRel -> yu_userdeptrel
+14:10:57,181 INFO - org.hibernate.cfg.Configuration.doConfigure(1547) | Configured SessionFactory: null
+14:10:57,189 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.Dept.userDeptRels -> yu_userdeptrel
+14:10:57,190 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.Dept.deptRoleRels -> yu_deptrolerel
+14:10:57,191 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.Role.rolerels -> yu_rolerel
+14:10:57,191 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.User.deptRoleRels -> yu_deptrolerel
+14:10:57,192 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.User.rolerels -> yu_rolerel
+14:10:57,192 INFO - org.hibernate.cfg.HbmBinder.bindCollectionSecondPass(2382) | Mapping collection: com.metecyu.yusr.model.User.userDeptRels -> yu_userdeptrel
+14:10:57,195 INFO - org.springframework.orm.hibernate3.LocalSessionFactoryBean.buildSessionFactory(777) | Building new Hibernate SessionFactory
+14:10:57,228 INFO - org.hibernate.connection.DriverManagerConnectionProvider.configure(41) | Using Hibernate built-in connection pool (not for production use!)
+14:10:57,228 INFO - org.hibernate.connection.DriverManagerConnectionProvider.configure(42) | Hibernate connection pool size: 20
+14:10:57,229 INFO - org.hibernate.connection.DriverManagerConnectionProvider.configure(45) | autocommit mode: false
+14:10:57,240 INFO - org.hibernate.connection.DriverManagerConnectionProvider.configure(80) | using driver: com.mysql.jdbc.Driver at URL: jdbc:mysql://localhost:3306/yusr?useUnicode=true&characterEncoding=UTF-8
+14:10:57,242 INFO - org.hibernate.connection.DriverManagerConnectionProvider.configure(86) | connection properties: {user=root, password=****}
+14:10:57,694 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(89) | RDBMS: MySQL, version: 5.5.15-log
+14:10:57,695 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(90) | JDBC driver: MySQL-AB JDBC Driver, version: mysql-connector-java-5.1.9 ( Revision: ${svn.Revision} )
+14:10:57,714 INFO - org.hibernate.dialect.Dialect.<init>(152) | Using dialect: org.hibernate.dialect.MySQLDialect
+14:10:57,719 INFO - org.hibernate.transaction.TransactionFactoryFactory.buildTransactionFactory(34) | Transaction strategy: org.springframework.orm.hibernate3.SpringTransactionFactory
+14:10:57,721 INFO - org.hibernate.transaction.TransactionManagerLookupFactory.getTransactionManagerLookup(33) | No TransactionManagerLookup configured (in JTA environment, use of read-write or transactional second-level cache is not recommended)
+14:10:57,722 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(143) | Automatic flush during beforeCompletion(): disabled
+14:10:57,722 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(147) | Automatic session close at end of transaction: disabled
+14:10:57,723 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(154) | JDBC batch size: 15
+14:10:57,723 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(157) | JDBC batch updates for versioned data: disabled
+14:10:57,725 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(162) | Scrollable result sets: enabled
+14:10:57,725 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(170) | JDBC3 getGeneratedKeys(): enabled
+14:10:57,725 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(178) | Connection release mode: auto
+14:10:57,726 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(202) | Maximum outer join fetch depth: 2
+14:10:57,726 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(205) | Default batch fetch size: 1
+14:10:57,727 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(209) | Generate SQL with comments: disabled
+14:10:57,728 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(213) | Order SQL updates by primary key: disabled
+14:10:57,728 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(217) | Order SQL inserts for batching: disabled
+14:10:57,729 INFO - org.hibernate.cfg.SettingsFactory.createQueryTranslatorFactory(386) | Query translator: org.hibernate.hql.ast.ASTQueryTranslatorFactory
+14:10:57,731 INFO - org.hibernate.hql.ast.ASTQueryTranslatorFactory.<init>(24) | Using ASTQueryTranslatorFactory
+14:10:57,732 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(225) | Query language substitutions: {}
+14:10:57,732 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(230) | JPA-QL strict compliance: disabled
+14:10:57,733 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(235) | Second-level cache: enabled
+14:10:57,733 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(239) | Query cache: disabled
+14:10:57,734 INFO - org.hibernate.cfg.SettingsFactory.createCacheProvider(373) | Cache provider: org.hibernate.cache.NoCacheProvider
+14:10:57,734 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(254) | Optimize cache for minimal puts: disabled
+14:10:57,735 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(263) | Structured second-level cache entries: disabled
+14:10:57,739 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(290) | Statistics: disabled
+14:10:57,739 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(294) | Deleted entity synthetic identifier rollback: disabled
+14:10:57,740 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(309) | Default entity-mode: pojo
+14:10:57,740 INFO - org.hibernate.cfg.SettingsFactory.buildSettings(313) | Named query checking : enabled
+14:10:57,778 INFO - org.hibernate.impl.SessionFactoryImpl.<init>(161) | building session factory
+14:10:58,243 INFO - org.hibernate.impl.SessionFactoryObjectFactory.addInstance(82) | Not binding factory to JNDI, no JNDI name configured
+14:10:58,667 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.orm.hibernate3.support.HibernateDaoSupport.setSessionFactory(org.hibernate.SessionFactory)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:58,667 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final org.hibernate.SessionFactory org.springframework.orm.hibernate3.support.HibernateDaoSupport.getSessionFactory()] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:58,668 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.orm.hibernate3.support.HibernateDaoSupport.setHibernateTemplate(org.springframework.orm.hibernate3.HibernateTemplate)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:58,669 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final org.springframework.orm.hibernate3.HibernateTemplate org.springframework.orm.hibernate3.support.HibernateDaoSupport.getHibernateTemplate()] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:58,670 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:58,762 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.orm.hibernate3.support.HibernateDaoSupport.setSessionFactory(org.hibernate.SessionFactory)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:58,763 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final org.hibernate.SessionFactory org.springframework.orm.hibernate3.support.HibernateDaoSupport.getSessionFactory()] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:58,763 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.orm.hibernate3.support.HibernateDaoSupport.setHibernateTemplate(org.springframework.orm.hibernate3.HibernateTemplate)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:58,764 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final org.springframework.orm.hibernate3.HibernateTemplate org.springframework.orm.hibernate3.support.HibernateDaoSupport.getHibernateTemplate()] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:58,764 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.dao.support.DaoSupport.afterPropertiesSet() throws java.lang.IllegalArgumentException,org.springframework.beans.factory.BeanInitializationException] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:58,824 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests.setApplicationContext(org.springframework.context.ApplicationContext)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:58,874 WARN - org.springframework.aop.framework.Cglib2AopProxy.doValidateClass(255) | Unable to proxy method [public final void org.springframework.test.context.junit4.AbstractJUnit4SpringContextTests.setApplicationContext(org.springframework.context.ApplicationContext)] because it is final: All calls to this method via a proxy will be routed directly to the proxy.
+14:10:59,801 INFO - com.metecyu.flow.service.DeptServiceTest.testSave(40) | 部门id:bgs4
+14:10:59,838 INFO - com.metecyu.flow.service.DeptServiceTest.findAllDept(47) | 部门数量:1
+14:10:59,856 INFO - org.springframework.context.support.AbstractApplicationContext.doClose(1020) | Closing org.springframework.context.support.GenericApplicationContext@222b360: startup date [Wed Mar 26 14:10:56 CST 2014]; root of context hierarchy
+14:10:59,860 INFO - org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.destroySingletons(433) | Destroying singletons in org.springframework.beans.factory.support.DefaultListableBeanFactory@21d497e: defining beans [sessionFactory,transactionManager,txAdvice,org.springframework.aop.config.internalAutoProxyCreator,allServiceMethod,org.springframework.aop.support.DefaultBeanFactoryPointcutAdvisor#0,org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor#0,deptDAO,userDAO,org.springframework.context.annotation.internalConfigurationAnnotationProcessor,org.springframework.context.annotation.internalAutowiredAnnotationProcessor,org.springframework.context.annotation.internalRequiredAnnotationProcessor,org.springframework.context.annotation.internalCommonAnnotationProcessor,deptService,org.springframework.context.annotation.ConfigurationClassPostProcessor$ImportAwareBeanPostProcessor#0]; root of factory hierarchy
+14:10:59,866 INFO - org.springframework.orm.hibernate3.AbstractSessionFactoryBean.destroy(246) | Closing Hibernate SessionFactory
+14:10:59,868 INFO - org.hibernate.impl.SessionFactoryImpl.close(769) | closing
+14:10:59,869 INFO - org.hibernate.connection.DriverManagerConnectionProvider.close(147) | cleaning up connection pool: jdbc:mysql://localhost:3306/yusr?useUnicode=true&characterEncoding=UTF-8

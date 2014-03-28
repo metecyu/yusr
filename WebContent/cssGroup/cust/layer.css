@@ -1,0 +1,30 @@
+.container {
+	width:1024px;
+	margin:auto;
+	
+}
+.top {
+	width:1024px;
+	background-color: #f3f3f3;
+	background-image: -moz-linear-gradient(#f9f9f9, #f3f3f3);
+	background-image: -webkit-linear-gradient(#f9f9f9, #f3f3f3);
+	background-image: linear-gradient(#f9f9f9, #f3f3f3);
+	background-repeat: repeat-x;
+	
+}
+
+.menu {
+	margin-top:90px;
+	
+}
+
+.content{
+	margin-top:0px; 
+	min-height:500px; height:auto!important; height:400px;
+}
+.tail{
+
+	height:50px;
+	text-align:right;
+}
+				
