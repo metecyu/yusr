@@ -42,9 +42,10 @@ public class DeptDAO extends HibernateDaoSupport {
 	 * 通过id获得对象
 	 */
 	public Dept findById(String id) {
+		
 		log.debug("getting Dept instance with id: " + id);
 		try {
-			Dept instance = (Dept) getSessionFactory().getCurrentSession().get(
+			Dept instance = (Dept) getSession().get(
 					"com.metecyu.yusr.model.Dept", id);
 			if (instance == null) {
 				log.debug("get successful, no instance found");
@@ -155,10 +156,13 @@ public class DeptDAO extends HibernateDaoSupport {
 	 * @return
 	 */
 	public int updateDeptOrderNo(String orderNo){  
+		//log.info("================== clear 0.1");
         Map<String,Object> params = new HashMap();    
+        
         StringBuffer sb=new StringBuffer();
         sb.append("update Dept t set t.orderno = t.orderno+1,t.deptname='wow' where t.orderno >="+orderNo);  
         int count = getSession().createQuery(sb.toString()).executeUpdate();    
+        this.getSession().clear();
         return count;    
     } 
 	
@@ -176,6 +180,12 @@ public class DeptDAO extends HibernateDaoSupport {
         List<Dept> list = query.list();
         return list;
     } 
+	
+	
+	public void clear(){  
+        this.getSession().clear();
+    } 
+	
 	
 	
 	
