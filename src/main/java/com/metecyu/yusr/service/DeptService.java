@@ -135,6 +135,7 @@ public class DeptService  {
 		
 		dept.setOrderno(targetOrder);
 		deptDAO.update(dept);
+
 		
 	}
 	
