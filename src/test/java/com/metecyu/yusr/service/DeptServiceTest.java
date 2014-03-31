@@ -27,7 +27,7 @@ public class DeptServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 	private DeptDAO deptDAO; 
 	
 	
-	@Test
+
 	@Rollback(value=true)  
 	public void testSave(){
 		// 如果有此部门 先删除
@@ -38,7 +38,7 @@ public class DeptServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		Assert.assertEquals(deptid,dept.getId());
 	}
 	
-	@Test
+
 	@Rollback(value=true)  
 	public void findAllDept(){
 		String deptid = "testDept4";
@@ -55,19 +55,15 @@ public class DeptServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		deptService.addDept("dept1","","","1");
 		deptService.addDept("dept2","","","1");
 		deptService.addDept("dept3","","","1");
+		
+		/**/
 		deptService.adjustDeptOrder("dept3", "dept1");
 		
-		List list = this.deptService.findAllDept();
-		
-		
-		Assert.assertEquals("1", ""+deptService.findById("dept3").getOrderno());
+		// List list = this.deptService.findAllDept();
+
 		Assert.assertEquals("2", ""+deptService.findById("dept1").getOrderno());
 		Assert.assertEquals("3", ""+deptService.findById("dept2").getOrderno());
-		
-		
-		
-		
-		
+		Assert.assertEquals("1", ""+deptService.findById("dept3").getOrderno());
 	}
 	
 	

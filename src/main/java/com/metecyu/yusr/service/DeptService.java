@@ -38,6 +38,7 @@ public class DeptService  {
 		dept.setType(type);
 		dept.setOrderno(max+1);
 		deptDAO.save(dept);
+		
 		return dept; 
 	}
 	
@@ -126,17 +127,17 @@ public class DeptService  {
 	 * @param shift
 	 */
 	public void adjustDeptOrder(String deptid,String targetDeptid){
+		
 		Dept dept = this.deptDAO.findById(deptid);
 		Dept targetDept = this.deptDAO.findById(targetDeptid);
 		int targetOrder = targetDept.getOrderno();
 		
 		int count = deptDAO.updateDeptOrderNo(""+targetOrder);
-		log.info("count:" + count);
+		//List list = this.deptDAO.findAllDept();
 		
 		dept.setOrderno(targetOrder);
 		deptDAO.update(dept);
 
-		
 	}
 	
 	

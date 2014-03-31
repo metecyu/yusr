@@ -17,7 +17,7 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.metecyu.yusr.model.Dept;
 import com.metecyu.yusr.service.DeptService;
-@RunWith(SpringJUnit4ClassRunner.class)
+
 @TransactionConfiguration(transactionManager="transactionManager",defaultRollback=false)  
 @ContextConfiguration(locations={"/applicationContext.xml","/hibernate.cfg.xml"})
 public class DeptDAOTest  extends AbstractTransactionalJUnit4SpringContextTests  {
