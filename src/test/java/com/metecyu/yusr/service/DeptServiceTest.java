@@ -50,20 +50,44 @@ public class DeptServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 	
 	
 	@Test
-	@Rollback(value=false)  
+	@Rollback(value=true)  
 	public void adjustDeptOrder(){
 		deptService.addDept("dept1","","","1");
 		deptService.addDept("dept2","","","1");
 		deptService.addDept("dept3","","","1");
 		
-		/**/
 		deptService.adjustDeptOrder("dept3", "dept1");
-		
-		// List list = this.deptService.findAllDept();
-
 		Assert.assertEquals("2", ""+deptService.findById("dept1").getOrderno());
 		Assert.assertEquals("3", ""+deptService.findById("dept2").getOrderno());
 		Assert.assertEquals("1", ""+deptService.findById("dept3").getOrderno());
+	}
+	
+	@Test
+	@Rollback(value=true)  
+	public void adjustDeptOrder2(){
+		deptService.addDept("dept1","","","1");
+		deptService.addDept("dept2","","","1");
+		deptService.addDept("dept3","","","1");
+		
+		deptService.adjustDeptOrder("dept3", "dept2");
+		Assert.assertEquals("1", ""+deptService.findById("dept1").getOrderno());
+		Assert.assertEquals("2", ""+deptService.findById("dept3").getOrderno());
+		Assert.assertEquals("3", ""+deptService.findById("dept2").getOrderno());
+	}
+	
+	@Test
+	@Rollback(value=true)  
+	public void adjustDeptOrder3(){
+		deptService.addDept("dept1","","","1");
+		deptService.addDept("dept2","","","1");
+		deptService.addDept("dept3","","","1");
+		deptService.addDept("dept4","","","1");
+		
+		deptService.adjustDeptOrder("dept3", "dept1");
+		Assert.assertEquals("1", ""+deptService.findById("dept3").getOrderno());
+		Assert.assertEquals("2", ""+deptService.findById("dept1").getOrderno());
+		Assert.assertEquals("3", ""+deptService.findById("dept2").getOrderno());
+		Assert.assertEquals("5", ""+deptService.findById("dept4").getOrderno());
 	}
 	
 	

@@ -31,11 +31,10 @@ public class DeptDAO extends HibernateDaoSupport {
 		return dept;
 	}
 	/**
-	 * 保存	
+	 * 更新
 	 */
 	public Dept update(Dept dept) {
 		getHibernateTemplate().update(dept);
-		
 		return dept;
 	}
 	/**
@@ -71,6 +70,7 @@ public class DeptDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+	
 	/**
 	 * 获取最大的部门编号
 	 * @return
@@ -99,8 +99,6 @@ public class DeptDAO extends HibernateDaoSupport {
         List<Dept> list = query.list();
         return list;
     } 
-	
-	
 	/**
 	 * 获得新的 部门编号
 	 * 编号规则：
@@ -138,12 +136,16 @@ public class DeptDAO extends HibernateDaoSupport {
 			 if(num.length()==1){ //如果是个位数  十位补0
 				 num = "0"+num;
 			 }
-			 
 			 return deptid+"@"+num;
 		 }
 		 return ""; 
 	}
-	
+	/**
+	 * 生成部门id
+	 * @param deptname
+	 * @return
+	 * @throws BadHanyuPinyinOutputFormatCombination
+	 */
 	public String genarateDeptId(String deptname) throws BadHanyuPinyinOutputFormatCombination{
 		String py = PinyinUtils.getFirstHanyuPinyin(deptname);
 		String newDeptid = this.getNewDeptid(py);
@@ -160,14 +162,11 @@ public class DeptDAO extends HibernateDaoSupport {
         Map<String,Object> params = new HashMap();    
         
         StringBuffer sb=new StringBuffer();
-        sb.append("update Dept t set t.orderno = t.orderno+1,t.deptname='wow' where t.orderno >="+orderNo);  
+        sb.append("update Dept t set t.orderno = t.orderno+1 where t.orderno >="+orderNo);  
         int count = getSession().createQuery(sb.toString()).executeUpdate();    
         this.getSession().clear();
         return count;    
     } 
-	
-	
-	
 	/**
 	 * 获取id重复的部门列表
 	 * @return
@@ -180,13 +179,6 @@ public class DeptDAO extends HibernateDaoSupport {
         List<Dept> list = query.list();
         return list;
     } 
-	
-	
-	public void clear(){  
-        this.getSession().clear();
-    } 
-	
-	
 	
 	
 	@Resource(name = "sessionFactory")

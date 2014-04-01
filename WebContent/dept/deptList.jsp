@@ -55,7 +55,7 @@
 			                <button class="btn dropdown-toggle" data-toggle="dropdown">其它操作 <span class="caret"></span></button>
 			                <ul class="dropdown-menu">
 			                  <li class="divider"></li> 
-			                  <li><a href="#">调整部门排序</a></li>
+			                  <li><a href="${ctx}/dept/navAdjustDeptOrder.do">调整部门排序</a></li>
 			                  <li class="divider"></li> 
 			                  <li><a href="#">显示删除部门(未完成)</a></li> 
 			                </ul>

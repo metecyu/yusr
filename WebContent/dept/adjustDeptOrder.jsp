@@ -15,7 +15,7 @@
 <script>
 	function submitForm(){
 		var form = document.form1;
-		form.action='${ctx}/dept/submitEditDept.do';
+		form.action='${ctx}/dept/submitAdjustDeptOrder.do';
 		form.submit()
 	}
 	function submitDel(){
@@ -71,52 +71,41 @@
 			  
 			  <div class="span10">
 			  	<div class='content'>
-			  		<h3 style='text-align:left'>修改部门信息</h3>
+			  		<h3 style='text-align:left'>调整部门排序</h3>
 			  		
 		
 			  		<form name='form1' method="post" class="bs-docs-example form-horizontal">
-			  			<input type='hidden' name='deptid' value='${dept.id}'/>
-			  
+			  			
+			            
 			            <div class="control-group">
-			              <label for="deptname" class="control-label">部门名称</label>
+			              <label for="deptprop" class="control-label">移动</label>
 			              <div class="controls">
-			                <input name='deptname' type="text" placeholder="部门名称" id="deptname" value='${dept.deptname}'>
-			                
-			                <button type="button" class="btn btn-inverse pull-right" style='margin-left:90px' onclick='submitDel()'>删除</button>
+			                	<select id='deptid' name='deptid'>
+					              	<c:forEach items="${deptList}" var="temp">
+										<option value='${temp.id}'>${temp.deptname}</option>
+									</c:forEach>
+					            </select>
+					            	&nbsp&nbsp至&nbsp&nbsp
+					            <select id='targetDeptid' name='targetDeptid'>
+					              	<c:forEach items="${deptList}" var="temp">
+										<option value='${temp.id}'>${temp.deptname}</option>
+									</c:forEach>
+					            </select>
+					            	&nbsp&nbsp之上
 			              </div>
+			            </div>
+			            
+			             <div class="control-group">
 			              
 			            </div>
-			             
-			            <div class="control-group">
-			              <label for="wholename" class="control-label">部门全称</label>
-			              <div class="controls">
-			                <input name='wholename' type="text" placeholder="部门全称" id="wholename"  value='${dept.deptwholename}'>
-			              </div>
-			            </div>
 			            
-			            <div class="control-group">
-			              <label for="deptprop" class="control-label">部门属性</label>
-			              <div class="controls">
-			                	<select id='deptprop' name='deptprop'>
-					              <option value='1'>业务</option>
-					              <option value='2'>服务</option>
-					            </select>
-			              </div>
-			            </div>
-			            <div class="control-group">
-			              <label for="deptid" class="control-label">部门编号</label>
-			              <div class="controls">
-			                <label for="deptid" class="control-label">${dept.id}</label>
-			                 
-			              </div>
-			            </div> 
+			           
 			            
 			            
 			            <div class="control-group">
 			              <div class="controls">
-			                <button type="button" class="btn btn-primary" style='margin-left:-30px' onclick='submitForm()'>保存</button>
+			                <button type="button" class="btn btn-primary" style='margin-left:-30px' onclick='submitForm()'>确认调整</button>
 			                <button type="button" class="btn" style='margin-left:30px' onclick="{location.href='${ctx}/dept/navDeptList.do'}">返回</button>
-			                
 			                
 			              </div>
 			            </div>

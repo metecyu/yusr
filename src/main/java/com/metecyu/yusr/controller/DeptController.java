@@ -93,5 +93,23 @@ public class DeptController extends MultiActionController{
 	}
 
 	
+	@RequestMapping("/navAdjustDeptOrder")
+	public ModelAndView navAdjustDeptOrder(HttpServletRequest request,HttpServletResponse response) {
+		List deptList = this.deptService.findAllDept();
+		Map map = new HashMap();
+		map.put("deptList", deptList);
+		return new ModelAndView("/dept/adjustDeptOrder", map);
+	}
+	
+	@RequestMapping("/submitAdjustDeptOrder")
+	public ModelAndView submitAdjustDeptOrder(HttpServletRequest request,HttpServletResponse response) {
+		String deptid = request.getParameter("deptid");
+		String targetDeptid = request.getParameter("targetDeptid");
+		
+		deptService.adjustDeptOrder(deptid, targetDeptid);
+		Map map = new HashMap();
+		return new ModelAndView("redirect:/dept/navDeptList.do", map);
+	}
+	
 	
 }

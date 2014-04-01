@@ -6,7 +6,7 @@
     <class name="com.metecyu.yusr.model.User" table="yu_user" catalog="yusr">
         <id name="id" type="string">
             <column name="id" length="200" />
-            <generator class="uuid.hex"></generator>
+            <generator class="assigned"></generator>
         </id>
         <property name="loginid" type="string">
             <column name="loginid" length="200">
