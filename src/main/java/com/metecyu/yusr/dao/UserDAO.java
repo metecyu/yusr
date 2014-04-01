@@ -104,16 +104,13 @@ public class UserDAO extends HibernateDaoSupport {
 	public List<User> findDeptUser(String deptid){  
         Map<String,Object> params = new HashMap();    
         StringBuffer sb=new StringBuffer();    
-        sb.append(" from User user inner join user.userDeptRels as rel ");
+        sb.append(" select user from User user inner join user.userDeptRels as rel ");
         sb.append(" where user.iseffect='y' and rel.dept.id = :deptid ");
         sb.append(" order by rel.orderno");
         
-       
+        //params.put("deptid", deptid);  
         
-        
-        params.put("deptid", deptid);  
-        
-        // logger.info(sb.toString());  
+        /*// logger.info(sb.toString());  
         Query query = getSession().createQuery(sb.toString());  
         Iterator<Entry<String, Object>> it = params.entrySet().iterator();  
         while (it.hasNext()) {  
@@ -121,7 +118,10 @@ public class UserDAO extends HibernateDaoSupport {
            String key = entry.getKey();  
            Object value = entry.getValue();  
            query.setParameter(key, value);  
-        }  
+        }  */
+        
+        Query query = getSession().createQuery(sb.toString());  
+        query.setParameter("deptid", deptid);
         List<User> list = query.list();
         return list;
     } 
@@ -177,6 +177,20 @@ public class UserDAO extends HibernateDaoSupport {
 		String newUserid = this.getNewUserid(py);
 		return newUserid; 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	
 	/**

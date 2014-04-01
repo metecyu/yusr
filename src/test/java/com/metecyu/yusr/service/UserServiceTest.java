@@ -1,4 +1,6 @@
 package com.metecyu.yusr.service;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
@@ -29,17 +31,39 @@ public class UserServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 	
 	
 	@Test
-	@Rollback(value=false)  
+	@Rollback(value=true)  
+	public void testAdd() throws Exception{
+		String userid = "yzp";
+		deptService.addDept("dept1","部门1", "部门1", "1");
+		userService.addUser(userid, "张三", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
+		userService.addUser(userid, "李四", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
+		
+		List<User> userList = userService.findDeptUser("dept1");
+		Assert.assertEquals(2, userList.size());
+		
+		Assert.assertEquals("张三",userList.get(0).getUsername());
+	}
+	
+	@Test
+	@Rollback(value=true)  
 	public void testSave() throws Exception{
 		String userid = "yzp";
 		deptService.addDept("dept1","部门1", "部门1", "1");
-		userService.addUser(userid, "俞张平", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310113", "程序员", "程序开发", "dept1");
-		userService.addUser(userid, "俞张平", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310113", "程序员", "程序开发", "dept1");
+		deptService.addDept("dept2","部门2", "部门2", "1");
+		userService.addUser(userid,userid, "张三", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
+		List<User> userList = userService.findDeptUser("dept1");
+		Assert.assertEquals(1, userList.size());
+		// Assert.assertEquals("张三",userList.get(0).getUsername());
 		
-		//log.info("用户id:"+user.getId());
-		//Assert.assertEquals(userid,user.getId());
+		// 修改部门
+		userService.saveUser(userid,userid, "张三", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept2");
+		userList = userService.findDeptUser("dept1");
+		Assert.assertEquals(0, userList.size());
+
+		userList = userService.findDeptUser("dept2");
+		Assert.assertEquals(1, userList.size());
+		
 	}
-	
 
 	/*@Rollback(value=true)  
 	public void findAllDept(){

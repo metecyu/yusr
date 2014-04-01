@@ -16,6 +16,7 @@ import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
 import com.metecyu.yusr.model.Dept;
+import com.metecyu.yusr.model.UserDeptRel;
 import com.metecyu.yusr.util.PinyinUtils;
 
 @Repository
@@ -178,7 +179,47 @@ public class DeptDAO extends HibernateDaoSupport {
         Query query = getSession().createQuery(sb.toString());    
         List<Dept> list = query.list();
         return list;
+    }
+	
+	
+	
+	/**
+	 * 获取主办部门
+	 * @return
+	 */
+	public UserDeptRel findMainUserDeptRel(String userid){  
+        Map<String,Object> params = new HashMap();  
+        List<UserDeptRel> list = findUserDeptRelByUserid(userid,"y");
+        UserDeptRel dept = null;
+        if(list.size()==1){
+        	dept = list.get(0);
+        }else if(list.size()>1){
+        	String msg = "用户的主办部门不应超过1个";
+        	logger.error(msg);
+        	throw new RuntimeException(msg);
+        }
+        return dept;
+    }
+	
+	/**
+	 * 获取用户部门关联
+	 * @return
+	 */
+	public List<UserDeptRel> findUserDeptRelByUserid(String userid,String ismain){  
+        Map<String,Object> params = new HashMap();    
+        StringBuffer sb=new StringBuffer();    
+        sb.append(" select rel from UserDeptRel rel");
+        sb.append(" where rel.user.id=:userid");
+        if("y".equals(ismain)){
+        	sb.append(" and rel.ismain='y'");
+        }
+        Query query = getSession().createQuery(sb.toString());  
+        query.setParameter("userid", userid);
+        List<UserDeptRel> list = query.list();
+        return list;
     } 
+	
+	
 	
 	
 	@Resource(name = "sessionFactory")

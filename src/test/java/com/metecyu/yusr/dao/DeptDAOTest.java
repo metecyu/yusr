@@ -1,6 +1,4 @@
 package com.metecyu.yusr.dao;
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
@@ -8,15 +6,14 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
-import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
-import com.metecyu.yusr.model.Dept;
+import com.metecyu.yusr.model.UserDeptRel;
 import com.metecyu.yusr.service.DeptService;
+import com.metecyu.yusr.service.UserService;
 
 @TransactionConfiguration(transactionManager="transactionManager",defaultRollback=false)  
 @ContextConfiguration(locations={"/applicationContext.xml","/hibernate.cfg.xml"})
@@ -27,6 +24,8 @@ public class DeptDAOTest  extends AbstractTransactionalJUnit4SpringContextTests 
 	private DeptDAO deptDAO; 
 	@Resource
 	DeptService deptService;
+	@Resource
+	private UserService userService;
 	
 
 	
@@ -77,8 +76,17 @@ public class DeptDAOTest  extends AbstractTransactionalJUnit4SpringContextTests 
 	}
 	
 	
-	
-	
+	@Test
+	@Rollback(value=true)  
+	public void testFindMainDept() throws Exception{
+		String userid = "zs";
+		String deptid = "dept1";
+		deptService.addDept("dept1","部门1", "部门1", "1");
+		userService.addUser(userid, "张三", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
+		
+		UserDeptRel rel = this.deptDAO.findMainUserDeptRel(userid);
+		Assert.assertEquals(deptid, rel.getDept().getId());
+	}
 	
 	/*@Test
 	@Rollback(value=true)  

@@ -38,7 +38,6 @@ public class DeptService  {
 		dept.setType(type);
 		dept.setOrderno(max+1);
 		deptDAO.save(dept);
-		
 		return dept; 
 	}
 	

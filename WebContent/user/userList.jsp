@@ -34,7 +34,7 @@
 			  <div class="span2">
 			  		<div class='menu'>
 				  		<div class="list-group">
-						  <a href="${ctx}/user/navUserList.do" class="list-group-item">
+						  <a href="#" class="list-group-item">
 						    <h4 class="list-group-item-heading">用户管理</h4> 
 						  </a>  
 						  <a href="#" class="list-group-item">
@@ -49,7 +49,7 @@
 			  
 			  <div class="span10">
 			  	<div class='content '>
-			  		<h3 style='text-align:left'>部门清单</h3> 
+			  		<h3 style='text-align:left'>部门用户清单</h3> 
 			  		<div class='handle' style='padding-top:10px;float:right;' >   
 				  		 <div class="btn-group">
 			                <button class="btn dropdown-toggle" data-toggle="dropdown">其它操作 <span class="caret"></span></button>
@@ -61,7 +61,7 @@
 			                </ul>
 			              </div><!-- /btn-group -->
 					  		
-			  			<button type="button" class="btn btn-primary" style='margin-left:30px' onclick="{location.href='${ctx}/dept/navAddDept.do';}">新建部门</button> 
+			  			<button type="button" class="btn btn-primary" style='margin-left:30px' onclick="{location.href='${ctx}/user/navAddUser.do';}">新建用户</button> 
 			  		</div>
 			  		<div class='table bs-docs-example' style='width:60% ;height:30px;padding-top:10px;'>
 			  			<h4>部门数量 :<span class="badge badge-info">${allDeptCount}</span>&nbsp&nbsp&nbsp&nbsp 总人数:<span class="badge badge-info">xx</span></h4>
@@ -71,20 +71,20 @@
 				  			<thead>   
 					  			<tr> 
 									<th>#</th>
-									<th>部门</th>
-									<th>人数</th>
-									<th>负责人</th>
+									<th>用户</th>
+									<th>登录id</th>
+									<th>状态</th>
 									<th></th>
 									<th></th>
 								</tr>
 							</thead>
 							<tbody>
-								<c:forEach items="${deptList}" var="temp">
+								<c:forEach items="${userList}" var="temp">
 								<tr>
 									<th>${temp.snum }</th>
-									<td>${temp.deptname }</td>
-									<td>${temp.peoples } </td>
-									<td>${temp.monitor }</td>
+									<td>${temp.username }</td>
+									<td>${temp.loginid } </td>
+									<td>${temp.orgtype }</td>
 									<td><a href="${ctx}/dept/navEditDept.do?deptid=${temp.id}">修改<span class="label"></span></a>  </td>
 									<td>详情 </td>
 								</tr>

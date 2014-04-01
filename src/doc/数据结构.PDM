@@ -3017,11 +3017,11 @@ TableComment 0 Microsoft Sans Serif,8,N</a:FontList>
 </o:Column>
 <o:Column Id="o39">
 <a:ObjectID>AD3D5AE7-8B74-4A83-898D-EBA521309003</a:ObjectID>
-<a:Name>编制属性</a:Name>
+<a:Name>编制属性（1:编制\2:服务）</a:Name>
 <a:Code>orgtype</a:Code>
 <a:CreationDate>1395297801</a:CreationDate>
 <a:Creator>TonyYu</a:Creator>
-<a:ModificationDate>1395298109</a:ModificationDate>
+<a:ModificationDate>1396341970</a:ModificationDate>
 <a:Modifier>TonyYu</a:Modifier>
 <a:DataType>varchar(200)</a:DataType>
 <a:Length>200</a:Length>
