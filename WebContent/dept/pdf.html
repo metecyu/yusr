@@ -1,0 +1,18 @@
+<html>  
+    <head>  
+        <title>Adobe¥Ú”°</title>  
+        <script type="text/javascript"">  
+            function printPDF() {  
+                var adobeReader = document.getElementById("adobeReader");  
+                adobeReader.click();  
+                adobeReader.setActive();  
+                adobeReader.focus();  
+                adobeReader.print();  
+            }  
+        </script>  
+    </head>  
+  
+    <body onload="printPDF()">  
+        <embed id="adobeReader" src="c:\testPrint.pdf" width="0" height="0" />  
+    </body>  
+</html>   

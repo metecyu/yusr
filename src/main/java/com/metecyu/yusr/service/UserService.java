@@ -72,6 +72,11 @@ public class UserService  {
 		return userDAO.findDeptUser(deptid);
 	}
 	
+	// 查找部门的用户列表
+	public User findById(String id){
+		return userDAO.findById(id);
+	}
+	
 	//删除部门
 	public User delete(String deptid) {
 		User user = this.userDAO.findById(deptid);
@@ -84,12 +89,12 @@ public class UserService  {
 	/**
 	 * 修改用户
 	 */
-	public User saveUser(String userid,String loginid,String username,String passward,String birthday,String mobile,String fjh,String fphone,String workstate,String orgtype,String sfzid,String duty,String dutydetails,String mainDeptid) throws Exception {
+	public User saveUser(String userid,String loginid,String username,String password,String birthday,String mobile,String fjh,String fphone,String workstate,String orgtype,String sfzid,String duty,String dutydetails,String mainDeptid) throws Exception {
 		User user  = this.userDAO.findById(userid);
 		user.setId(userid);
 		user.setLoginid(loginid);
 		user.setUsername(username);
-		user.setPassword(passward);
+		user.setPassword(password);
 		user.setBirthday(DateCenter.getDate(birthday));
 		user.setMobile(mobile);
 		user.setFjh(fjh);
@@ -113,7 +118,7 @@ public class UserService  {
 			rel.setDept(dept);
 			rel.setOrderno(max+1);
 			userDAO.saveDeptRel(rel);
-		}else if(!mainDeptRel.getId().equals(mainDeptid)){ //部门id被修改了
+		}else if(!mainDeptRel.getDept().getId().equals(mainDeptid)){ //部门id被修改了
 			int max = this.userDAO.findMaxSerial(mainDeptid);
 			mainDeptRel.setDept(dept);
 			mainDeptRel.setOrderno(max+1);

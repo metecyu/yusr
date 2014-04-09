@@ -14,7 +14,19 @@
 
 <script type="text/javascript" src="../cssGroup/bootstrap2/js/jquery.js"></script>
 <script type="text/javascript" src="../cssGroup/bootstrap2/js/bootstrap.min.js"></script>
-
+<script type="text/javascript">
+	function navDeptUserList(){
+		var deptid = $('#deptid').val();
+		location.href='${ctx}/user/navUserList.do?deptid='+deptid;
+		// 设置默认值
+		
+		
+	}
+	$(function(){
+		
+		$('#deptid').val('${deptid}');
+	})
+</script>
 
 <body>
 <!--  栅格系统示例 S -->
@@ -22,30 +34,10 @@
 <!-- 实际案例 E -->
 <div class="container">
 		<div class="row"> 
-			  <div class="span12">
-				  	<div class="top" style='padding:1px;'>
-							<div style='color:#E4E4D0; margin-left:50px'>
-								<h4>${systemName}</h4> 
-							</div>
-				  	</div>
-			  </div>
+			  <%@ include file="/includes/top.jsp"%>
 		</div> 
 		<div class="row"> 
-			  <div class="span2">
-			  		<div class='menu'>
-				  		<div class="list-group">
-						  <a href="#" class="list-group-item">
-						    <h4 class="list-group-item-heading">用户管理</h4> 
-						  </a>  
-						  <a href="#" class="list-group-item">
-						    <h4 class="list-group-item-heading">部门管理</h4>
-						  </a>
-						  <a href="#" class="list-group-item">
-						    <h4 class="list-group-item-heading">角色管理</h4>
-						  </a>
-						</div>
-					</div>
-			  </div><!-- end left area -->
+			  <%@ include file="/includes/leftmenu.jsp"%>
 			  
 			  <div class="span10">
 			  	<div class='content '>
@@ -63,9 +55,21 @@
 					  		
 			  			<button type="button" class="btn btn-primary" style='margin-left:30px' onclick="{location.href='${ctx}/user/navAddUser.do';}">新建用户</button> 
 			  		</div>
+			  		
+			  			
 			  		<div class='table bs-docs-example' style='width:60% ;height:30px;padding-top:10px;'>
-			  			<h4>部门数量 :<span class="badge badge-info">${allDeptCount}</span>&nbsp&nbsp&nbsp&nbsp 总人数:<span class="badge badge-info">xx</span></h4>
+			  			
+			  			<span>
+				  			<select id='deptid' name='deptid' onchange='navDeptUserList()'>
+					               <c:forEach items="${deptList}" var="temp">
+										<option value='${temp.id}'>${temp.deptname}</option>
+									</c:forEach>
+						    </select>
+					    </span>
+					    人数 :<span class="badge badge-info">${allDeptCount}</span>&nbsp&nbsp&nbsp&nbsp 
+			  			
 			  		</div>
+			  		
 					<div class='table bs-docs-example' style='padding-top:10px;'>
 				  		<table class="table table-hover">
 				  			<thead>   
@@ -85,8 +89,8 @@
 									<td>${temp.username }</td>
 									<td>${temp.loginid } </td>
 									<td>${temp.orgtype }</td>
-									<td><a href="${ctx}/dept/navEditDept.do?deptid=${temp.id}">修改<span class="label"></span></a>  </td>
-									<td>详情 </td>
+									<td><a href="${ctx}/user/navEditUser.do?userid=${temp.id}">修改<span class="label"></span></a>  </td>
+									<td>详情 </td>  
 								</tr>
 								</c:forEach>
 							</tbody>
@@ -96,9 +100,7 @@
 			  </div><!-- end right area -->
 		</div>
 		<div class="row">
-			  <div class="span12">
-			  	<div class='tail' style='color:#E4E4D0'> POWER BY YZP </div>
-			  </div>
+			  <%@ include file="/includes/top.jsp"%>
 		</div>
 </div><!-- end container -->
 

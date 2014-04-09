@@ -44,44 +44,24 @@
 <!-- 实际案例 E -->
 <div class="container">
 		<div class="row"> 
-			  <div class="span12">
-				  	<div class="top" style='padding:1px;'>
-							<div style='color:#E4E4D0; margin-left:50px'>
-								<h4>${systemName}</h4> 
-							</div>
-				  	</div>
-			  </div>
+			  <%@ include file="/includes/top.jsp"%>
 		</div> 
 		<div class="row">
-			  <div class="span2">
-			  		<div class='menu'>
-				  		<div class="list-group">
-						  <a href="#" class="list-group-item">
-						    <h4 class="list-group-item-heading">用户管理</h4>
-						  </a>  
-						  <a href="#" class="list-group-item">
-						    <h4 class="list-group-item-heading">部门管理</h4>
-						  </a>
-						  <a href="#" class="list-group-item">
-						    <h4 class="list-group-item-heading">角色管理</h4>
-						  </a>
-						</div>
-					</div> 
-			  </div><!-- end left area -->
+			  <%@ include file="/includes/leftmenu.jsp"%>
 			  
-			  <div class="span10">
+			  <div class="span10"> 
 			  	<div class='content'>
 			  		<h3 style='text-align:left'>修改部门信息</h3>
 			  		
 		
 			  		<form name='form1' method="post" class="bs-docs-example form-horizontal">
 			  			<input type='hidden' name='deptid' value='${dept.id}'/>
+			  			
 			  
 			            <div class="control-group">
 			              <label for="deptname" class="control-label">部门名称</label>
 			              <div class="controls">
 			                <input name='deptname' type="text" placeholder="部门名称" id="deptname" value='${dept.deptname}'>
-			                
 			                <button type="button" class="btn btn-inverse pull-right" style='margin-left:90px' onclick='submitDel()'>删除</button>
 			              </div>
 			              
@@ -126,9 +106,7 @@
 			  </div><!-- end right area -->
 		</div>
 		<div class="row">
-			  <div class="span12">
-			  		<div class='tail' style='color:#E4E4D0'> POWER BY YZP </div>
-			  </div>
+			  <%@ include file="/includes/top.jsp"%>
 		</div>
 </div><!-- end container -->
 

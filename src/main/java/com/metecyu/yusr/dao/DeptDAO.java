@@ -200,6 +200,9 @@ public class DeptDAO extends HibernateDaoSupport {
         }
         return dept;
     }
+
+	
+	
 	
 	/**
 	 * 获取用户部门关联

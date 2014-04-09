@@ -8,8 +8,6 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
-
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
@@ -19,6 +17,7 @@ import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
 import com.metecyu.yusr.model.Dept;
 import com.metecyu.yusr.model.User;
+import com.metecyu.yusr.model.UserDeptRel;
 import com.metecyu.yusr.service.DeptService;
 import com.metecyu.yusr.service.UserService;
 import com.metecyu.yusr.webmodel.WUser;
@@ -38,13 +37,22 @@ public class UserController extends MultiActionController{
 	
 	@RequestMapping("/navUserList")
 	public ModelAndView navUserList(HttpServletRequest request,HttpServletResponse response) {
+		
+		List<Dept> deptList = this.deptService.findAllDept();
 		String deptid = request.getParameter("deptid");
-		deptid="dept1";
+		if(deptid==null || deptid.equals("") ){
+			if(deptList.size()>0){
+				deptid=deptList.get(0).getId();
+			}
+		}
 		List<User> userList = userService.findDeptUser(deptid);
 		Map map = new HashMap();
 		List<WUser> outList  = userService.turnToWUser(userList);
 		map.put("userList", outList);
+		map.put("deptList", deptList);
 		map.put("allDeptCount", outList.size());
+		map.put("deptid", deptid);
+		
 		return new ModelAndView("/user/userList", map);
 	}
 	
@@ -61,7 +69,7 @@ public class UserController extends MultiActionController{
 	public ModelAndView submitAddDept(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String loginid = request.getParameter("loginid");
 		String username = request.getParameter("username");
-		String passward = request.getParameter("passward");
+		String password = request.getParameter("password");
 		String birthday = request.getParameter("birthday");
 		
 		String mobile = request.getParameter("mobile");
@@ -75,30 +83,47 @@ public class UserController extends MultiActionController{
 		String dutydetails = request.getParameter("dutydetails");
 		String mainDeptid = request.getParameter("mainDeptid");
 		
-		userService.addUser(loginid, username, passward, birthday, mobile, fjh, fphone, workstate, orgtype, sfzid, duty, dutydetails, mainDeptid);
+		userService.addUser(loginid, username, password, birthday, mobile, fjh, fphone, workstate, orgtype, sfzid, duty, dutydetails, mainDeptid);
 		return new ModelAndView("redirect:/user/navUserList.do");
 
 	}
 	
-	@RequestMapping("/navEditDept")
-	public ModelAndView navEditDept(HttpServletRequest request,HttpServletResponse response) {
-		String deptid = request.getParameter("deptid");
-		Dept dept = deptService.findById(deptid);
+	@RequestMapping("/navEditUser")
+	public ModelAndView navEditUser(HttpServletRequest request,HttpServletResponse response) {
+		String id = request.getParameter("userid");
+		User user = userService.findById(id);
 		Map map = new HashMap();
-		map.put("dept", dept);
+		
+		List deptList = deptService.findAllDept();
+		map.put("deptList", deptList);
+		UserDeptRel rel = deptService.findMainUserDeptRel(id);
+		map.put("user", user);
+		map.put("mainDeptid", rel.getDept().getId());
+		
 		return new ModelAndView("/user/editUser", map);
 	}
 	
 	@RequestMapping("/submitEditUser")
-	public ModelAndView submitEditDept(HttpServletRequest request,HttpServletResponse response) {
-		String deptid = request.getParameter("deptid");
-		String deptname = request.getParameter("deptname");
-		String wholename = request.getParameter("wholename");
-		String deptprop = request.getParameter("deptprop");
-		Dept dept = deptService.findById(deptid);
-		deptService.saveDept(deptid, deptname, wholename, deptprop);
+	public ModelAndView submitEditUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
+		String userid = request.getParameter("userid");
+		String loginid = request.getParameter("loginid");
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		String birthday = request.getParameter("birthday");
+		
+		String mobile = request.getParameter("mobile");
+		String fjh = request.getParameter("fjh");
+		String fphone = request.getParameter("fphone");
+		String workstate = request.getParameter("workstate");
+		
+		String orgtype = request.getParameter("orgtype");
+		String sfzid = request.getParameter("sfzid");
+		String duty = request.getParameter("duty");
+		String dutydetails = request.getParameter("dutydetails");
+		String mainDeptid = request.getParameter("mainDeptid");
+		userService.saveUser(userid, loginid, username, password, birthday, mobile, fjh, fphone, workstate, orgtype, sfzid, duty, dutydetails, mainDeptid);
 		Map map = new HashMap();
-		map.put("dept", dept);
+		map.put("deptid", mainDeptid);
 		return new ModelAndView("redirect:/user/navUserList.do", map);
 	}
 	

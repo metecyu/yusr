@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 
 import com.metecyu.yusr.dao.DeptDAO;
 import com.metecyu.yusr.model.Dept;
-import com.metecyu.yusr.util.PinyinUtils;
+import com.metecyu.yusr.model.UserDeptRel;
 import com.metecyu.yusr.webmodel.WDept;
 
 @Service
@@ -119,6 +119,7 @@ public class DeptService  {
 		deptDAO.save(dept);
 		return dept; 
 	}
+	
 	/**
 	 * 调整部门排序
 	 * @param deptid
@@ -139,6 +140,16 @@ public class DeptService  {
 
 	}
 	
+	/**
+	 * 获得主办部门关联记录
+	 * @param deptid
+	 * @param targetDeptid
+	 * @param shift
+	 */
+	public UserDeptRel findMainUserDeptRel(String userid){
+		UserDeptRel rel = this.deptDAO.findMainUserDeptRel(userid);
+		return rel;
+	}
 	
 	
 
