@@ -1,18 +1,15 @@
 package com.metecyu.yusr.service;
-import java.util.List;
-
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
-import org.junit.Assert;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
+import com.metecyu.yusr.dao.DataCenter;
 import com.metecyu.yusr.dao.DeptDAO;
-import com.metecyu.yusr.model.User;
 
 
 @TransactionConfiguration(transactionManager="transactionManager",defaultRollback=false)
@@ -28,9 +25,10 @@ public class DataCenerTest extends AbstractTransactionalJUnit4SpringContextTests
 	
 	@Resource
 	private DeptDAO deptDAO; 
+	@Resource
+	DataCenter dataCenter;
 	
 	
-	@Test
 	@Rollback(value=false)  
 	public void addTestDate() throws Exception{
 		String userid = "yzp";
@@ -41,6 +39,17 @@ public class DataCenerTest extends AbstractTransactionalJUnit4SpringContextTests
 		userService.addUser(userid, "李四", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
 	}
 	
+	/**
+	 * 清空所有数据
+	 * @throws Exception
+	 */
+	@Test
+	@Rollback(value=false)  
+	public void delteAllDate() throws Exception{
+		dataCenter.deleteAllUserDeptRel();
+		dataCenter.deleteAllDept();
+		dataCenter.deleteAllUser();
+	}
 	
 	
 	
