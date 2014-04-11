@@ -45,7 +45,7 @@ public class UserController extends MultiActionController{
 				deptid=deptList.get(0).getId();
 			}
 		}
-		List<User> userList = userService.findDeptUser(deptid);
+		List<UserDeptRel> userList = userService.findDeptUser(deptid);
 		Map map = new HashMap();
 		List<WUser> outList  = userService.turnToWUser(userList);
 		map.put("userList", outList);
@@ -145,7 +145,7 @@ public class UserController extends MultiActionController{
 	@RequestMapping("/navAdjustUserOrder")
 	public ModelAndView navAdjustUserOrder(HttpServletRequest request,HttpServletResponse response) {
 		String deptid = request.getParameter("deptid");
-		List<User> userList = this.userService.findDeptUser(deptid);
+		List<UserDeptRel> userList = this.userService.findDeptUser(deptid);
 		Map map = new HashMap();
 		map.put("userList", userList);
 		map.put("deptid", deptid);

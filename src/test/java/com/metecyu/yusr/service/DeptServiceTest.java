@@ -135,7 +135,7 @@ public class DeptServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		Assert.assertEquals("dept2", rel.getDept().getId());
 		
 		// 部门1 中有三个用户
-		List<User> userList = this.userService.findDeptUser("dept1");
+		List<UserDeptRel> userList = this.userService.findDeptUser("dept1");
 		Assert.assertEquals(3, userList.size());
 		
 		// 部门2 中有两个个用户

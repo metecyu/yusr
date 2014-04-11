@@ -1,9 +1,7 @@
 package com.metecyu.yusr.dao;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
-import java.util.Map.Entry;
 import java.util.UUID;
 
 import javax.annotation.Resource;
@@ -101,10 +99,10 @@ public class UserDAO extends HibernateDaoSupport {
 	 * 获取所有有效部门
 	 * @return
 	 */
-	public List<User> findDeptUser(String deptid){  
+	public List<UserDeptRel> findDeptUser(String deptid){  
         Map<String,Object> params = new HashMap();    
         StringBuffer sb=new StringBuffer();    
-        sb.append(" select user from User user inner join user.userDeptRels as rel ");
+        sb.append(" select rel from User user inner join user.userDeptRels as rel ");
         sb.append(" where user.iseffect='y' and rel.dept.id = :deptid ");
         sb.append(" order by rel.orderno");
         
@@ -122,7 +120,7 @@ public class UserDAO extends HibernateDaoSupport {
         
         Query query = getSession().createQuery(sb.toString());  
         query.setParameter("deptid", deptid);
-        List<User> list = query.list();
+        List<UserDeptRel> list = query.list();
         return list;
     } 
 	/**

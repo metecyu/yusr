@@ -71,7 +71,7 @@ public class UserService  {
 	}
 	
 	// 查找部门的用户列表
-	public List<User>  findDeptUser(String deptid){
+	public List<UserDeptRel>  findDeptUser(String deptid){
 		return userDAO.findDeptUser(deptid);
 	}
 	
@@ -139,11 +139,12 @@ public class UserService  {
 	 * @param type
 	 * @return
 	 */
-	public List<WUser> turnToWUser(List<User> deptList) {	
+	public List<WUser> turnToWUser(List<UserDeptRel> deptList) {	
 		int i = 0;
 		List<WUser> outList = new ArrayList();
-		for(User user:deptList){
+		for(UserDeptRel rel:deptList){
 			i++;
+			User user = rel.getUser();
 			WUser w = new WUser();
 			w.setSnum(""+i);
 			w.setId(user.getId());
