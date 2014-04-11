@@ -63,6 +63,9 @@ public class UserService  {
 	 */
 	public User addUser(String loginid,String username,String passward,String birthday,String mobile,String fjh,String fphone,String workstate,String orgtype,String sfzid,String duty,String dutydetails,String mainDeptid) throws Exception {
 		String userid = this.userDAO.genarateUserId(username);
+		if(loginid ==null || loginid.equals("")){
+			loginid = userid;
+		}
 		User user = addUser(userid, loginid, username, passward, birthday, mobile, fjh, fphone, workstate, orgtype, sfzid, duty, dutydetails,mainDeptid);
 		return user; 
 	}
@@ -161,6 +164,9 @@ public class UserService  {
 		}
 		return outList;
 	}
+	
+	
+	
 	
 	
 

@@ -30,6 +30,18 @@
 		form.action='${ctx}/user/submitEditUser.do';
 		form.submit()
 	}
+	
+	function submitDel(){
+		var isDo = confirm("是否删除用户？")
+		if(isDo){
+			var form = document.form1;
+			form.action='${ctx}/user/submitDelUser.do';
+			form.submit()	
+		}
+		 
+	}
+	
+	
 	$(function(){
 		$("#birthday").datepicker({firstDay:0});
 		var oDate1 = new Date();
@@ -68,7 +80,7 @@
 			            </div> -->
 			            <input name='userid' type="hidden" id="userid" value='${user.id}'>
 			            <input type='hidden' name='xx' value='${mainDeptid}'/>
-			  			
+			  			<button type="button" class="btn btn-inverse pull-right" style='margin-left:90px' onclick='submitDel()'>删除</button>
 			  			
 			             <div class="control-group">
 			              <label for="username" class="control-label">用户名称</label>

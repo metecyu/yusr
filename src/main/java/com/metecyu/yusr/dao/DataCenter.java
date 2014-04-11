@@ -1,29 +1,36 @@
 package com.metecyu.yusr.dao;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.UUID;
-
 import javax.annotation.Resource;
-
-import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombination;
 
 import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
-import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 import org.springframework.stereotype.Repository;
 
-import com.metecyu.yusr.model.Dept;
-import com.metecyu.yusr.model.UserDeptRel;
-import com.metecyu.yusr.util.PinyinUtils;
+import com.metecyu.yusr.service.DeptService;
+import com.metecyu.yusr.service.UserService;
 
 @Repository
 public class DataCenter extends HibernateDaoSupport {
 	private static final Logger log = LogManager
 			.getLogger(DataCenter.class);
 	
+	@Resource
+	private DeptService deptService;
+	
+	@Resource
+	private UserService userService; 
+	public void addTestData() throws Exception{
+		deptService.addDept("dept1","部门1", "部门1", "1");
+		deptService.addDept("dept2","部门2", "部门2", "1");
+		deptService.addDept("dept3","部门3", "部门3", "1");
+		deptService.addDept("dept4","部门4", "部门4", "1");
+		userService.addUser("", "用户1", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
+		userService.addUser("", "用户2", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
+		userService.addUser("", "用户3", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
+		userService.addUser("", "用户4", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
+
+	}
 	/**
 	 * 保存	
 	 */
@@ -44,7 +51,8 @@ public class DataCenter extends HibernateDaoSupport {
         sb.append("delete User user");  
         int count = getSession().createQuery(sb.toString()).executeUpdate();
 	}
-
+	
+	
 	
 	
 	

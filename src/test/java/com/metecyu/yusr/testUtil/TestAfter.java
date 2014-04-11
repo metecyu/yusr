@@ -1,7 +1,8 @@
-package com.metecyu.yusr.service;
+package com.metecyu.yusr.testUtil;
 import javax.annotation.Resource;
 
 import org.apache.log4j.Logger;
+import org.junit.BeforeClass;
 import org.junit.Test;
 import org.springframework.test.annotation.Rollback;
 import org.springframework.test.context.ContextConfiguration;
@@ -10,12 +11,13 @@ import org.springframework.test.context.transaction.TransactionConfiguration;
 
 import com.metecyu.yusr.dao.DataCenter;
 import com.metecyu.yusr.dao.DeptDAO;
-
+import com.metecyu.yusr.service.DeptService;
+import com.metecyu.yusr.service.UserService;
 
 @TransactionConfiguration(transactionManager="transactionManager",defaultRollback=false)
 @ContextConfiguration(locations={"/applicationContext.xml","/hibernate.cfg.xml"})
-public class DataCenerTest extends AbstractTransactionalJUnit4SpringContextTests {
-	private static final Logger log = Logger.getLogger(DataCenerTest.class);
+public class TestAfter extends AbstractTransactionalJUnit4SpringContextTests {
+	private static final Logger log = Logger.getLogger(TestAfter.class);
 	
 	@Resource
 	private DeptService deptService;
@@ -27,8 +29,11 @@ public class DataCenerTest extends AbstractTransactionalJUnit4SpringContextTests
 	private DeptDAO deptDAO; 
 	@Resource
 	DataCenter dataCenter;
-	
-	
+	/**
+	 * 清空所有数据
+	 * @throws Exception
+	 */
+	@Test
 	@Rollback(value=false)  
 	public void addTestDate() throws Exception{
 		// dataCenter.addTestData();
@@ -43,19 +48,6 @@ public class DataCenerTest extends AbstractTransactionalJUnit4SpringContextTests
 		deptService.addNoMainDeptUser("dept1", "yh3");
 		
 	}
-	
-	/**
-	 * 清空所有数据
-	 * @throws Exception
-	 */
-	@Test
-	@Rollback(value=false)  
-	public void delteAllDate() throws Exception{
-		dataCenter.deleteAllUserDeptRel();
-		dataCenter.deleteAllDept();
-		dataCenter.deleteAllUser();
-	}
-	
 	
 	
 }

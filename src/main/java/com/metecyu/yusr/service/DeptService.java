@@ -11,7 +11,9 @@ import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
 import com.metecyu.yusr.dao.DeptDAO;
+import com.metecyu.yusr.dao.UserDAO;
 import com.metecyu.yusr.model.Dept;
+import com.metecyu.yusr.model.User;
 import com.metecyu.yusr.model.UserDeptRel;
 import com.metecyu.yusr.webmodel.WDept;
 
@@ -20,7 +22,10 @@ public class DeptService  {
 	private static final Logger log = LogManager
 			.getLogger(DeptService.class);
 	@Resource
-	private DeptDAO deptDAO; 
+	private DeptDAO deptDAO;
+	@Resource
+	private UserDAO userDAO; 
+	
 	/**
 	 * 添加部门
 	 * @param deptname
@@ -112,6 +117,7 @@ public class DeptService  {
 		deptDAO.save(dept);
 		return dept; 
 	}
+	
 	//删除部门
 	public Dept delete(String deptid) {
 		Dept dept = this.deptDAO.findById(deptid);
@@ -131,13 +137,34 @@ public class DeptService  {
 		Dept dept = this.deptDAO.findById(deptid);
 		Dept targetDept = this.deptDAO.findById(targetDeptid);
 		int targetOrder = targetDept.getOrderno();
-		
 		int count = deptDAO.updateDeptOrderNo(""+targetOrder);
-		//List list = this.deptDAO.findAllDept();
-		
 		dept.setOrderno(targetOrder);
 		deptDAO.update(dept);
+	}
+	
 
+	/**
+	 * 添加非主办部门用户
+	 * @param deptid
+	 * @param targetDeptid
+	 * @param shift
+	 */
+	public UserDeptRel addNoMainDeptUser(String deptid,String userid){
+		UserDeptRel hisRel = deptDAO.findUserDeptRelByDeptId(deptid, userid);
+		if(hisRel!=null){
+			return hisRel;
+		}
+	   	User user = userDAO.findById(userid);
+		// 建立部门关联 
+		Dept dept = deptDAO.findById(deptid);
+		int max = this.userDAO.findMaxSerial(deptid); //添加用户至最后
+		UserDeptRel rel = new UserDeptRel();
+		rel.setIsmain("n");
+		rel.setUser(user);
+		rel.setDept(dept);
+		rel.setOrderno(max+1);
+		userDAO.saveDeptRel(rel);
+		return rel;
 	}
 	
 	/**
@@ -149,6 +176,25 @@ public class DeptService  {
 	public UserDeptRel findMainUserDeptRel(String userid){
 		UserDeptRel rel = this.deptDAO.findMainUserDeptRel(userid);
 		return rel;
+	}
+	
+	
+	/**
+	 * 调整用户部门排序
+	 * @param sourceid
+	 * @param targetid
+	 */
+	public void adjustUserOrder(String deptid,String userid,String targetUserid){
+		
+		UserDeptRel rel = this.deptDAO.findUserDeptRelByDeptId(deptid, userid);
+		UserDeptRel targetRel = this.deptDAO.findUserDeptRelByDeptId(deptid, targetUserid);
+		int targetOrder = targetRel.getOrderno();
+		int count = deptDAO.updateUserDeptOrderNo(deptid,""+targetOrder);
+		//List list = this.deptDAO.findAllDept();
+		
+		rel.setOrderno(targetOrder);
+		deptDAO.updateUserRel(rel);
+
 	}
 	
 	

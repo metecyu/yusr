@@ -66,7 +66,7 @@ public class UserController extends MultiActionController{
 	}
 
 	@RequestMapping("/submitAddUser")
-	public ModelAndView submitAddDept(HttpServletRequest request,HttpServletResponse response) throws Exception {
+	public ModelAndView submitAddUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String loginid = request.getParameter("loginid");
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
@@ -128,29 +128,37 @@ public class UserController extends MultiActionController{
 	}
 	
 	
-	@RequestMapping("/submitDelDept")
-	public ModelAndView submitDelDept(HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping("/submitDelUser")
+	public ModelAndView submitDelUser(HttpServletRequest request,HttpServletResponse response) {
 		String userid = request.getParameter("userid");
+		UserDeptRel rel = deptService.findMainUserDeptRel(userid);
 		userService.delete(userid);
+		// User user = userService.findById(userid);
+		
+		
 		Map map = new HashMap();
+		map.put("deptid", rel.getDept().getId());
 		return new ModelAndView("redirect:/user/navUserList.do", map);
 	}
 
 	
-	@RequestMapping("/navAdjustDeptOrder")
-	public ModelAndView navAdjustDeptOrder(HttpServletRequest request,HttpServletResponse response) {
-		List deptList = this.deptService.findAllDept();
+	@RequestMapping("/navAdjustUserOrder")
+	public ModelAndView navAdjustUserOrder(HttpServletRequest request,HttpServletResponse response) {
+		String deptid = request.getParameter("deptid");
+		List<User> userList = this.userService.findDeptUser(deptid);
 		Map map = new HashMap();
-		map.put("deptList", deptList);
-		return new ModelAndView("/user/adjustDeptOrder", map);
+		map.put("userList", userList);
+		map.put("deptid", deptid);
+		return new ModelAndView("/user/adjustUserOrder", map);
 	}
 	
-	@RequestMapping("/submitAdjustDeptOrder")
-	public ModelAndView submitAdjustDeptOrder(HttpServletRequest request,HttpServletResponse response) {
+	@RequestMapping("/submitAdjustUserOrder")
+	public ModelAndView submitAdjustUserOrder(HttpServletRequest request,HttpServletResponse response) {
 		String deptid = request.getParameter("deptid");
-		String targetDeptid = request.getParameter("targetDeptid");
+		String userid = request.getParameter("userid");
+		String targetUserid = request.getParameter("targetUserid");
 		
-		deptService.adjustDeptOrder(deptid, targetDeptid);
+		deptService.adjustUserOrder(deptid,userid, targetUserid);
 		Map map = new HashMap();
 		return new ModelAndView("redirect:/user/navUserList.do", map);
 	}

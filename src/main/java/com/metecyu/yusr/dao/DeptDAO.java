@@ -38,6 +38,16 @@ public class DeptDAO extends HibernateDaoSupport {
 		getHibernateTemplate().update(dept);
 		return dept;
 	}
+	
+	/**
+	 * 更新
+	 */
+	public UserDeptRel updateUserRel(UserDeptRel rel) {
+		getHibernateTemplate().update(rel);
+		return rel;
+	}
+	
+	
 	/**
 	 * 通过id获得对象
 	 */
@@ -168,6 +178,23 @@ public class DeptDAO extends HibernateDaoSupport {
         this.getSession().clear();
         return count;    
     } 
+	
+	/**
+	 * 调整部门用户排序
+	 * @return
+	 */
+	public int updateUserDeptOrderNo(String deptid,String orderNo){  
+		//log.info("================== clear 0.1");
+        Map<String,Object> params = new HashMap();    
+        
+        StringBuffer sb=new StringBuffer();
+        sb.append("update UserDeptRel t set t.orderno = t.orderno+1 where t.orderno >="+orderNo+" and t.dept.id='"+deptid+"'");  
+        int count = getSession().createQuery(sb.toString()).executeUpdate();    
+        this.getSession().clear();
+        return count;    
+    } 
+	
+	
 	/**
 	 * 获取id重复的部门列表
 	 * @return
@@ -189,7 +216,7 @@ public class DeptDAO extends HibernateDaoSupport {
 	 */
 	public UserDeptRel findMainUserDeptRel(String userid){  
         Map<String,Object> params = new HashMap();  
-        List<UserDeptRel> list = findUserDeptRelByUserid(userid,"y");
+        List<UserDeptRel> list = findUserDeptRelListByUserid(userid,"y");
         UserDeptRel dept = null;
         if(list.size()==1){
         	dept = list.get(0);
@@ -206,9 +233,13 @@ public class DeptDAO extends HibernateDaoSupport {
 	
 	/**
 	 * 获取用户部门关联
+	 * 
+	 * @param userid
+	 * @param ismain  y:仅限主办部门 
 	 * @return
 	 */
-	public List<UserDeptRel> findUserDeptRelByUserid(String userid,String ismain){  
+	
+	public List<UserDeptRel> findUserDeptRelListByUserid(String userid,String ismain){  
         Map<String,Object> params = new HashMap();    
         StringBuffer sb=new StringBuffer();    
         sb.append(" select rel from UserDeptRel rel");
@@ -222,6 +253,23 @@ public class DeptDAO extends HibernateDaoSupport {
         return list;
     } 
 	
+	
+	/**
+	 * 获取用户的部门关联记录， 如果没有的话返回null对象
+	 * @param deptid
+	 * @param userid 
+	 * @return
+	 */
+	public UserDeptRel findUserDeptRelByDeptId(String deptid,String userid){  
+		UserDeptRel ret =null;
+		List<UserDeptRel> list = findUserDeptRelListByUserid(userid,"");
+		for(UserDeptRel rel:list){
+			if(rel.getDept().getId().equals(deptid)){
+				ret = rel; 
+			}
+		}
+		return ret;
+    } 
 	
 	
 	

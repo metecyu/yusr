@@ -218,7 +218,9 @@ public class UserDAO extends HibernateDaoSupport {
         Query query = getSession().createQuery(sb.toString());    
         List<User> list = query.list();
         return list;
-    } 
+    }
+	
+	
 
 	
 	

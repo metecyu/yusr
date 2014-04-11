@@ -15,7 +15,7 @@
 <script>
 	function submitForm(){
 		var form = document.form1;
-		form.action='${ctx}/dept/submitAdjustDeptOrder.do';
+		form.action='${ctx}/user/submitAdjustUserOrder.do';
 		form.submit()
 	}
 	function submitDel(){
@@ -51,24 +51,23 @@
 			  
 			  <div class="span10">
 			  	<div class='content'>
-			  		<h3 style='text-align:left'>调整部门排序</h3>
+			  		<h3 style='text-align:left'>调整用户排序</h3>
 			  		
 		
 			  		<form name='form1' method="post" class="bs-docs-example form-horizontal">
-			  			
-			            
+			            <input type='hidden' name='deptid' value='${deptid}'/>
 			            <div class="control-group">
 			              <label for="deptprop" class="control-label">移动</label>
 			              <div class="controls">
-			                	<select id='deptid' name='deptid'>
-					              	<c:forEach items="${deptList}" var="temp">
-										<option value='${temp.id}'>${temp.deptname}</option>
+			                	<select id='userid' name='userid'>
+					              	<c:forEach items="${userList}" var="temp">
+										<option value='${temp.id}'>${temp.username}</option>
 									</c:forEach>
 					            </select>
 					            	&nbsp&nbsp至&nbsp&nbsp
-					            <select id='targetDeptid' name='targetDeptid'>
-					              	<c:forEach items="${deptList}" var="temp">
-										<option value='${temp.id}'>${temp.deptname}</option>
+					            <select id='targetUserid' name='targetUserid'>
+					              	<c:forEach items="${userList}" var="temp">
+										<option value='${temp.id}'>${temp.username}</option>
 									</c:forEach>
 					            </select>
 					            	&nbsp&nbsp之上
@@ -85,7 +84,7 @@
 			            <div class="control-group">
 			              <div class="controls">
 			                <button type="button" class="btn btn-primary" style='margin-left:-30px' onclick='submitForm()'>确认调整</button>
-			                <button type="button" class="btn" style='margin-left:30px' onclick="{location.href='${ctx}/dept/navDeptList.do'}">返回</button>
+			                <button type="button" class="btn" style='margin-left:30px' onclick="{location.href='${ctx}/user/navUserList.do'}">返回</button>
 			                
 			              </div>
 			            </div>
