@@ -99,10 +99,10 @@ public class UserDAO extends HibernateDaoSupport {
 	 * 获取所有有效部门
 	 * @return
 	 */
-	public List<UserDeptRel> findDeptUser(String deptid){  
+	public List<Object[]> findDeptUser(String deptid){  
         Map<String,Object> params = new HashMap();    
         StringBuffer sb=new StringBuffer();    
-        sb.append(" select rel from User user inner join user.userDeptRels as rel ");
+        sb.append(" select user,rel.dept,rel from User user inner join user.userDeptRels as rel ");
         sb.append(" where user.iseffect='y' and rel.dept.id = :deptid ");
         sb.append(" order by rel.orderno");
         
@@ -120,7 +120,7 @@ public class UserDAO extends HibernateDaoSupport {
         
         Query query = getSession().createQuery(sb.toString());  
         query.setParameter("deptid", deptid);
-        List<UserDeptRel> list = query.list();
+        List<Object[]> list = query.list();
         return list;
     } 
 	/**

@@ -145,9 +145,8 @@ public class DeptService  {
 
 	/**
 	 * 添加非主办部门用户
-	 * @param deptid
-	 * @param targetDeptid
-	 * @param shift
+	 * @param deptid  
+	 * @param userid
 	 */
 	public UserDeptRel addNoMainDeptUser(String deptid,String userid){
 		UserDeptRel hisRel = deptDAO.findUserDeptRelByDeptId(deptid, userid);
@@ -195,6 +194,22 @@ public class DeptService  {
 		rel.setOrderno(targetOrder);
 		deptDAO.updateUserRel(rel);
 
+	}
+	
+	/**
+	 * 删除用户部门关联，如果是主办部门则不删因为这样破坏了用户必须属于至少一个部门的规则
+	 * @param deptid
+	 * @param userid
+	 * @return
+	 */
+	 
+	public int delUserDeptRel(String deptid,String userid){
+		UserDeptRel rel = this.deptDAO.findUserDeptRelByDeptId(deptid, userid);
+		if(rel.getIsmain().equals("n")){
+			this.deptDAO.delete(rel);
+			return 1;
+		}
+		return 0;
 	}
 	
 	

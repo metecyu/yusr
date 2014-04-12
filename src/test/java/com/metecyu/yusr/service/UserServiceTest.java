@@ -11,9 +11,8 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
+import com.metecyu.yusr.bmodel.UserD;
 import com.metecyu.yusr.dao.DeptDAO;
-import com.metecyu.yusr.model.User;
-import com.metecyu.yusr.model.UserDeptRel;
 
 
 @TransactionConfiguration(transactionManager="transactionManager",defaultRollback=false)
@@ -39,10 +38,10 @@ public class UserServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		userService.addUser(userid, "张三", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
 		userService.addUser(userid, "李四", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
 		
-		List<UserDeptRel> userList = userService.findDeptUser("dept1");
+		List<UserD> userList = userService.findDeptUser("dept1");
 		Assert.assertEquals(2, userList.size());
 		
-		Assert.assertEquals("张三",userList.get(0).getUser().getUsername());
+		Assert.assertEquals("张三",userList.get(0).getUsername());
 	}
 	
 	@Test
@@ -52,7 +51,7 @@ public class UserServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		deptService.addDept("dept1","部门1", "部门1", "1");
 		deptService.addDept("dept2","部门2", "部门2", "1");
 		userService.addUser(userid,userid, "张三", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
-		List<UserDeptRel> userList = userService.findDeptUser("dept1");
+		List<UserD> userList = userService.findDeptUser("dept1");
 		Assert.assertEquals(1, userList.size());
 		// Assert.assertEquals("张三",userList.get(0).getUsername());
 		

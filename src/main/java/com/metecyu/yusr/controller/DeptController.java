@@ -46,7 +46,6 @@ public class DeptController extends MultiActionController{
 	public ModelAndView navAddDept(HttpServletRequest request,HttpServletResponse response) {
 		List deptList = deptService.findAllDept();
 		Map map = new HashMap();
-	
 		return new ModelAndView("/dept/addDept", map);
 	}
 

@@ -35,11 +35,21 @@
 		var isDo = confirm("是否删除用户？")
 		if(isDo){
 			var form = document.form1;
-			form.action='${ctx}/user/submitDelUser.do';
+			form.action='${ctx}/user/submitDelUser.do'; 
+			form.submit()	
+		}
+		  
+	}
+	function submitDelUserFromDept(){
+		var isDo = confirm("是否删除用户222？")
+		if(isDo){ 
+			var form = document.form1;
+			form.action='${ctx}/user/submitDelUserFromDept.do';
 			form.submit()	
 		}
 		 
 	}
+	
 	
 	
 	$(function(){
@@ -79,10 +89,22 @@
 			              </div>
 			            </div> -->
 			            <input name='userid' type="hidden" id="userid" value='${user.id}'>
-			            <input type='hidden' name='xx' value='${mainDeptid}'/>
-			  			<button type="button" class="btn btn-inverse pull-right" style='margin-left:90px' onclick='submitDel()'>删除</button>
+			     <%--        <input type='hidden' name='xx' value='${mainDeptid}'/> --%>
+			            <input type='hidden' name='deptid' value='${deptid}'/>
+			 
+			  			 
+			  			 <c:choose>
+						    <c:when test="${isDisDelFromDept=='y'}">
+						      <button type="button" class="btn btn-inverse pull-right" style='margin-left:90px' onclick='submitDelUserFromDept()'>从部门中删除</button> 
+						    </c:when>
+						   <c:otherwise>
+						       <button type="button" class="btn btn-inverse pull-right" style='margin-left:90px' onclick='submitDel()'>删除</button>
+						   </c:otherwise>
+						</c:choose>
+
+
 			  			
-			             <div class="control-group">
+			             <div class="control-group"> 
 			              <label for="username" class="control-label">用户名称</label>
 			              <div class="controls">
 			                <input name='username' type="text" placeholder="填写用户名称" id="username" value='${user.username}'>

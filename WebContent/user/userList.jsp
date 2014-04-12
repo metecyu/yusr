@@ -18,12 +18,9 @@
 	function navDeptUserList(){
 		var deptid = $('#deptid').val();
 		location.href='${ctx}/user/navUserList.do?deptid='+deptid;
-		// 设置默认值
-		
 		
 	}
 	$(function(){
-		
 		$('#deptid').val('${deptid}');
 	})
 </script>
@@ -48,6 +45,8 @@
 			                <ul class="dropdown-menu">
 			                  <li class="divider"></li> 
 			                  <li><a href="${ctx}/user/navAdjustUserOrder.do?deptid=${deptid}">调整用户排序</a></li>
+			                  <li class="divider"></li> 
+			                  <li><a href="${ctx}/user/navAddOhterDeptUser.do?deptid=${deptid}">添加其它部门用户</a></li>
 			                  <li class="divider"></li> 
 			                  <li><a href="#">显示删除部门(未完成)</a></li> 
 			                </ul>
@@ -77,7 +76,7 @@
 									<th>#</th>
 									<th>用户</th>
 									<th>登录id</th>
-									<th>状态</th>
+									
 									<th></th>
 									<th></th>
 								</tr>
@@ -86,10 +85,15 @@
 								<c:forEach items="${userList}" var="temp">
 								<tr>
 									<th>${temp.snum }</th>
-									<td>${temp.username }</td>
+									<td>${temp.username }
+										<c:if test="${!temp.isInMainDept}">  
+										   -  
+										   <span class="label">${temp.mainDeptName }</span>
+										</c:if> 
+									</td>
+									
 									<td>${temp.loginid } </td>
-									<td>${temp.orgtype }</td>
-									<td><a href="${ctx}/user/navEditUser.do?userid=${temp.id}">修改<span class="label"></span></a>  </td>
+									<td><a href="${ctx}/user/navEditUser.do?userid=${temp.id}&deptid=${deptid}">修改<span class="label"></span></a>  </td>
 									<td>详情 </td>  
 								</tr>
 								</c:forEach>

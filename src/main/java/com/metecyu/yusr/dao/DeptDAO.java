@@ -81,6 +81,19 @@ public class DeptDAO extends HibernateDaoSupport {
 			throw re;
 		}
 	}
+	/**
+	 * 物理删除
+	 */
+	public void delete(UserDeptRel persistentInstance) {
+		log.debug("deleting Dept instance");
+		try {
+			getSessionFactory().getCurrentSession().delete(persistentInstance);
+			log.debug("delete successful");
+		} catch (RuntimeException re) {
+			log.error("delete failed", re);
+			throw re;
+		}
+	}
 	
 	/**
 	 * 获取最大的部门编号

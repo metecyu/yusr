@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.multiaction.MultiActionController;
 
+import com.metecyu.yusr.bmodel.UserD;
 import com.metecyu.yusr.model.Dept;
 import com.metecyu.yusr.model.User;
 import com.metecyu.yusr.model.UserDeptRel;
@@ -35,9 +36,10 @@ public class UserController extends MultiActionController{
 	@Resource
 	private UserService userService;
 	
+	
+	// 跳转到到部门用户清单界面
 	@RequestMapping("/navUserList")
 	public ModelAndView navUserList(HttpServletRequest request,HttpServletResponse response) {
-		
 		List<Dept> deptList = this.deptService.findAllDept();
 		String deptid = request.getParameter("deptid");
 		if(deptid==null || deptid.equals("") ){
@@ -45,18 +47,17 @@ public class UserController extends MultiActionController{
 				deptid=deptList.get(0).getId();
 			}
 		}
-		List<UserDeptRel> userList = userService.findDeptUser(deptid);
+		List<UserD> userList = userService.findDeptUser(deptid);
 		Map map = new HashMap();
-		List<WUser> outList  = userService.turnToWUser(userList);
+		List<WUser> outList  = userService.turnToWUser(userList,deptid);
 		map.put("userList", outList);
 		map.put("deptList", deptList);
 		map.put("allDeptCount", outList.size());
 		map.put("deptid", deptid);
-		
 		return new ModelAndView("/user/userList", map);
 	}
 	
-
+	// 跳转到新建用户界面
 	@RequestMapping("/navAddUser")
 	public ModelAndView navAddUser(HttpServletRequest request,HttpServletResponse response) {
 		List deptList = deptService.findAllDept();
@@ -64,7 +65,7 @@ public class UserController extends MultiActionController{
 		map.put("deptList", deptList);
 		return new ModelAndView("/user/addUser", map);
 	}
-
+	// 确定添加用户
 	@RequestMapping("/submitAddUser")
 	public ModelAndView submitAddUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String loginid = request.getParameter("loginid");
@@ -87,22 +88,31 @@ public class UserController extends MultiActionController{
 		return new ModelAndView("redirect:/user/navUserList.do");
 
 	}
-	
+	// 跳转到修改用户界面
 	@RequestMapping("/navEditUser")
 	public ModelAndView navEditUser(HttpServletRequest request,HttpServletResponse response) {
 		String id = request.getParameter("userid");
+		String deptid = request.getParameter("deptid");
+		String isDisDelFromDept = "n";
 		User user = userService.findById(id);
-		Map map = new HashMap();
+		UserDeptRel rel = deptService.findMainUserDeptRel(id);
 		
+		if(!deptid.equals(rel.getDept().getId())){
+			isDisDelFromDept ="y";
+		}
+		Map map = new HashMap();
 		List deptList = deptService.findAllDept();
 		map.put("deptList", deptList);
-		UserDeptRel rel = deptService.findMainUserDeptRel(id);
+		
 		map.put("user", user);
 		map.put("mainDeptid", rel.getDept().getId());
+		map.put("deptid", deptid);
+		map.put("isDisDelFromDept",isDisDelFromDept);
+		
 		
 		return new ModelAndView("/user/editUser", map);
 	}
-	
+	// 确定修改用户
 	@RequestMapping("/submitEditUser")
 	public ModelAndView submitEditUser(HttpServletRequest request,HttpServletResponse response) throws Exception {
 		String userid = request.getParameter("userid");
@@ -127,7 +137,7 @@ public class UserController extends MultiActionController{
 		return new ModelAndView("redirect:/user/navUserList.do", map);
 	}
 	
-	
+	// 确定删除用户
 	@RequestMapping("/submitDelUser")
 	public ModelAndView submitDelUser(HttpServletRequest request,HttpServletResponse response) {
 		String userid = request.getParameter("userid");
@@ -140,18 +150,64 @@ public class UserController extends MultiActionController{
 		map.put("deptid", rel.getDept().getId());
 		return new ModelAndView("redirect:/user/navUserList.do", map);
 	}
+	// 确定删除用户
+	@RequestMapping("/submitDelUserFromDept")
+	public ModelAndView submitDelUserFromDept(HttpServletRequest request,HttpServletResponse response) {
+		String userid = request.getParameter("userid");
+		String deptid = request.getParameter("deptid");
+		deptService.delUserDeptRel(deptid, userid);
+		Map map = new HashMap();
+		map.put("deptid", deptid);
+		return new ModelAndView("redirect:/user/navUserList.do", map);
+	}
 
-	
+	// 调整用户排序
 	@RequestMapping("/navAdjustUserOrder")
 	public ModelAndView navAdjustUserOrder(HttpServletRequest request,HttpServletResponse response) {
 		String deptid = request.getParameter("deptid");
-		List<UserDeptRel> userList = this.userService.findDeptUser(deptid);
+		List<UserD> userList = this.userService.findDeptUser(deptid);
 		Map map = new HashMap();
 		map.put("userList", userList);
 		map.put("deptid", deptid);
 		return new ModelAndView("/user/adjustUserOrder", map);
 	}
 	
+	// 跳转到添加其他部门用户
+	@RequestMapping("/navAddOhterDeptUser")
+	public ModelAndView navAddOhterDeptUser(HttpServletRequest request,HttpServletResponse response) {
+		
+		List<Dept> deptList = this.deptService.findAllDept();
+		String deptid = request.getParameter("deptid");
+		String chooseDeptid = request.getParameter("chooseDeptid");
+		
+		if(chooseDeptid==null || chooseDeptid.equals("") ){
+			if(deptList.size()>0){
+				chooseDeptid=deptList.get(0).getId();
+			}
+		}
+		List<UserD> userList = userService.findDeptUser(chooseDeptid);
+		Map map = new HashMap();
+		map.put("deptList", deptList);
+		map.put("userList", userList);
+		map.put("chooseDeptid", chooseDeptid);
+		map.put("deptid", deptid);
+		return new ModelAndView("/user/addOhterDeptUser", map);
+	}
+	
+	// 跳转到添加其他部门用户
+	@RequestMapping("/submitAddOhterDeptUser")
+	public ModelAndView submitAddOhterDeptUser(HttpServletRequest request,HttpServletResponse response) {
+		List<Dept> deptList = this.deptService.findAllDept();
+		String deptid = request.getParameter("deptid");
+		String userid = request.getParameter("userid");
+		deptService.addNoMainDeptUser(deptid, userid);
+		Map map = new HashMap();
+		map.put("deptid", deptid);
+		return new ModelAndView("redirect:/user/navUserList.do", map);
+	}
+		
+		
+	// 确定用户排序
 	@RequestMapping("/submitAdjustUserOrder")
 	public ModelAndView submitAdjustUserOrder(HttpServletRequest request,HttpServletResponse response) {
 		String deptid = request.getParameter("deptid");

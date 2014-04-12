@@ -11,10 +11,10 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.AbstractTransactionalJUnit4SpringContextTests;
 import org.springframework.test.context.transaction.TransactionConfiguration;
 
+import com.metecyu.yusr.bmodel.UserD;
 import com.metecyu.yusr.dao.DataCenter;
 import com.metecyu.yusr.dao.DeptDAO;
 import com.metecyu.yusr.model.Dept;
-import com.metecyu.yusr.model.User;
 import com.metecyu.yusr.model.UserDeptRel;
 
 
@@ -135,12 +135,43 @@ public class DeptServiceTest extends AbstractTransactionalJUnit4SpringContextTes
 		Assert.assertEquals("dept2", rel.getDept().getId());
 		
 		// 部门1 中有三个用户
-		List<UserDeptRel> userList = this.userService.findDeptUser("dept1");
+		List<UserD> userList = this.userService.findDeptUser("dept1");
 		Assert.assertEquals(3, userList.size());
 		
 		// 部门2 中有两个个用户
 		userList = this.userService.findDeptUser("dept2");
 		Assert.assertEquals(2, userList.size());
+	}
+	
+	
+	@Test
+	@Rollback(value=true)  
+	public void delUserDeptRel() throws Exception{
+		deptService.addDept("dept1","部门1", "部门1", "1");
+		userService.addUser("yh1","", "用户1", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
+		userService.addUser("yh2","", "用户2", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept1");
+		
+		deptService.addDept("dept2","部门2", "部门2", "1");
+		userService.addUser("yh3","", "用户3", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept2");
+		userService.addUser("yh4","", "用户4", "111111", "1982-10-31", "13718992931", "2879", "58523345", "1", "1", "3101115198210310123", "程序员", "程序开发", "dept2");
+		
+		// 用户3 同时在2个部门
+		deptService.addNoMainDeptUser("dept1", "yh3");
+		UserDeptRel rel = deptService.findMainUserDeptRel("yh3");
+
+		// 部门1 中有三个用户
+		List<UserD> userList = userService.findDeptUser("dept1");
+		Assert.assertEquals(3, userList.size());		
+		// 删除用户1，因为是主办部门所以应该不发生变化
+		deptService.delUserDeptRel("dept1", "yh1");
+		userList = userService.findDeptUser("dept1");
+		Assert.assertEquals(3, userList.size());		
+		
+		// 删除用户1，因为是主办部门所以应该不发生变化
+		deptService.delUserDeptRel("dept1", "yh3");
+		userList = userService.findDeptUser("dept1");
+		Assert.assertEquals(2, userList.size());		
+				
 		
 		
 	}

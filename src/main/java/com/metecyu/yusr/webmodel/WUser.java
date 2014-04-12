@@ -35,7 +35,46 @@ public class WUser implements java.io.Serializable {
 	private String sfzid;
 	private String duty;
 	private String dutydetails;
-	private Set deptRoleRels = new HashSet(0);
+	private boolean isInMainDept = true;
+	private String mainDeptid = "";
+	private String mainDeptName = "";
+	
+
+	public String getMainDeptid() {
+		return mainDeptid;
+	}
+
+
+
+	public void setMainDeptid(String mainDeptid) {
+		this.mainDeptid = mainDeptid;
+	}
+
+
+
+	public String getMainDeptName() {
+		return mainDeptName;
+	}
+
+
+
+	public void setMainDeptName(String mainDeptName) {
+		this.mainDeptName = mainDeptName;
+	}
+
+
+
+	public boolean getIsInMainDept() {
+		return isInMainDept;
+	}
+
+
+
+	public void setInMainDept(boolean isInMainDept) {
+		this.isInMainDept = isInMainDept;
+	}
+
+
 
 	public WUser() {
 	}
@@ -154,14 +193,7 @@ public class WUser implements java.io.Serializable {
 		this.dutydetails = dutydetails;
 	}
 
-	public Set getDeptRoleRels() {
-		return this.deptRoleRels;
-	}
-
-	public void setDeptRoleRels(Set deptRoleRels) {
-		this.deptRoleRels = deptRoleRels;
-	}
-
+	
 
 
 }

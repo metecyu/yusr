@@ -1,5 +1,6 @@
 package com.metecyu.yusr.service;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -8,13 +9,13 @@ import org.apache.log4j.LogManager;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+import com.metecyu.yusr.bmodel.UserD;
 import com.metecyu.yusr.dao.DeptDAO;
 import com.metecyu.yusr.dao.UserDAO;
 import com.metecyu.yusr.model.Dept;
 import com.metecyu.yusr.model.User;
 import com.metecyu.yusr.model.UserDeptRel;
 import com.metecyu.yusr.util.DateCenter;
-import com.metecyu.yusr.webmodel.WDept;
 import com.metecyu.yusr.webmodel.WUser;
 
 @Service
@@ -71,8 +72,41 @@ public class UserService  {
 	}
 	
 	// 查找部门的用户列表
-	public List<UserDeptRel>  findDeptUser(String deptid){
-		return userDAO.findDeptUser(deptid);
+	public List<UserD>  findDeptUser(String deptid){
+		List<Object[]> relList = userDAO.findDeptUser(deptid);
+		List<UserD> outList = new ArrayList();
+		for(Object[] objArr :relList){
+			UserD user = new UserD();
+			
+			User usr = (User)objArr[0];
+			Dept dept = (Dept)objArr[1];
+			UserDeptRel rel = (UserDeptRel)objArr[2];
+			
+			user.setId(usr.getId());
+			user.setUsername(usr.getUsername());
+			user.setUsername(usr.getUsername());
+			
+			user.setLoginid(usr.getLoginid());
+			user.setIseffect(usr.getIseffect());
+			user.setPassword(usr.getPassword());
+			user.setBirthday(usr.getBirthday());
+			user.setMobile(usr.getMobile());
+			
+			user.setFjh(usr.getFjh());
+			user.setFphone(usr.getFphone());
+			user.setWorkstate(usr.getWorkstate());
+			user.setOrgtype(usr.getOrgtype());
+			user.setSfzid(usr.getSfzid());
+			user.setDuty(usr.getDuty());
+			user.setDutydetails(usr.getDutydetails());
+			
+			user.setDeptid(dept.getId());
+			user.setDeptName(dept.getDeptname());
+			user.setUserDeptRelid(rel.getId());
+			user.setIsMain(rel.getIsmain());
+			outList.add(user);
+		}
+		return outList;
 	}
 	
 	// 查找部门的用户列表
@@ -139,12 +173,12 @@ public class UserService  {
 	 * @param type
 	 * @return
 	 */
-	public List<WUser> turnToWUser(List<UserDeptRel> deptList) {	
+	public List<WUser> turnToWUser(List<UserD> deptList,String deptid) {	
 		int i = 0;
 		List<WUser> outList = new ArrayList();
-		for(UserDeptRel rel:deptList){
+		for(UserD user:deptList){
 			i++;
-			User user = rel.getUser();
+			// User user = rel.getUser();
 			WUser w = new WUser();
 			w.setSnum(""+i);
 			w.setId(user.getId());
@@ -160,7 +194,15 @@ public class UserService  {
 			w.setSfzid(user.getSfzid());
 			w.setDuty(user.getDuty());
 			w.setDutydetails(user.getDutydetails());
-		
+			w.setMainDeptid(user.getDeptid());
+			w.setMainDeptName(user.getDeptName());
+			// 如果不是主部门
+			if(!user.getIsMain().equals("y")){
+				w.setInMainDept(false);
+				UserDeptRel rel = this.deptDAO.findMainUserDeptRel(user.getId());
+				w.setMainDeptid(rel.getDept().getId());
+				w.setMainDeptName(rel.getDept().getDeptname());
+			}
 			outList.add(w);
 		}
 		return outList;
