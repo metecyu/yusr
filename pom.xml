@@ -124,7 +124,23 @@
 		<artifactId>mysql-connector-java</artifactId>
 		<version>5.1.9</version>
 	</dependency>
-	
+	<dependency>
+		<groupId>org.jvnet.jax-ws-commons.spring</groupId> 
+	  	<artifactId>jaxws-spring</artifactId>
+	  	<version>1.8</version>
+	  	<!-- 排除其对spring2.0的依赖 -->  
+		  <exclusions>  
+		    <exclusion>  
+		        <groupId>org.springframework</groupId>  
+		        <artifactId>spring</artifactId>  
+		    </exclusion>  
+		  </exclusions>
+	</dependency>
+	<dependency>
+		<groupId>com.sun.xml.ws</groupId>
+		<artifactId>jaxws-rt</artifactId>
+		<version>2.2.3</version>
+	</dependency>
     </dependencies>
     
     <build>
@@ -137,8 +153,39 @@
 			    	<argLine>-Dfile.encoding=UTF-8</argLine>
 			        <forkMode>always</forkMode>
 			    </configuration>
-			</plugin>
+			</plugin> 
+		<!--	 
+			<plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-shade-plugin</artifactId>
+        <version>2.1</version>
+        <executions> 
+            <execution>
+                <phase>package</phase>
+                <goals>
+                    <goal>shade</goal>
+                </goals>
+                <configuration>
+                        <transformers>
+                            <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">  
+                                <resource>META-INF/spring.handlers</resource>  
+                            </transformer>
+                            <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">  
+                                <resource>META-INF/spring.schemas</resource>  
+                            </transformer>
+                            <transformer implementation="org.apache.maven.plugins.shade.resource.AppendingTransformer">  
+                                <resource>META-INF/spring.tooling</resource>  
+                            </transformer>
+                   
+                        </transformers>
+                </configuration>
+            </execution>
+        </executions>
+      </plugin>
+       -->
         </plugins>
       </build>
+      
+      
 
 </project>
