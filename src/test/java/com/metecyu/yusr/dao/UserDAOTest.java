@@ -12,7 +12,7 @@ import com.metecyu.yusr.model.User;
 
 
 
-@ContextConfiguration(locations={"/applicationContext.xml","/hibernate.cfg.xml"})
+@ContextConfiguration(locations={"/applicationContext.xml"})
 public class UserDAOTest extends AbstractJUnit4SpringContextTests {
 	private static final Logger log = Logger.getLogger(UserDAOTest.class);
 	

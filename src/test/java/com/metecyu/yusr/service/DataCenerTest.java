@@ -13,7 +13,7 @@ import com.metecyu.yusr.dao.DeptDAO;
 
 
 @TransactionConfiguration(transactionManager="transactionManager",defaultRollback=false)
-@ContextConfiguration(locations={"/applicationContext.xml","/hibernate.cfg.xml"})
+@ContextConfiguration(locations={"/applicationContext.xml"})
 public class DataCenerTest extends AbstractTransactionalJUnit4SpringContextTests {
 	private static final Logger log = Logger.getLogger(DataCenerTest.class);
 	

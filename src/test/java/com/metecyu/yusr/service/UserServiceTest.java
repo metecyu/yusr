@@ -16,7 +16,7 @@ import com.metecyu.yusr.dao.DeptDAO;
 
 
 @TransactionConfiguration(transactionManager="transactionManager",defaultRollback=false)
-@ContextConfiguration(locations={"/applicationContext.xml","/hibernate.cfg.xml"})
+@ContextConfiguration(locations={"/applicationContext.xml"})
 public class UserServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
 	private static final Logger log = Logger.getLogger(UserServiceTest.class);
 	

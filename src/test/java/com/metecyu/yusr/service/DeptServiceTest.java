@@ -19,7 +19,7 @@ import com.metecyu.yusr.model.UserDeptRel;
 
 
 @TransactionConfiguration(transactionManager="transactionManager",defaultRollback=false)
-@ContextConfiguration(locations={"/applicationContext.xml","/hibernate.cfg.xml"})
+@ContextConfiguration(locations={"/applicationContext.xml"})
 public class DeptServiceTest extends AbstractTransactionalJUnit4SpringContextTests {
 	private static final Logger log = Logger.getLogger(DeptServiceTest.class);
 	

@@ -1,0 +1,9 @@
+# jaxws-spring-1.8.jar
+http\://jax-ws.dev.java.net/spring/core=org.apache.xbean.spring.context.v2.XBeanNamespaceHandler
+http\://jax-ws.dev.java.net/spring/servlet=org.apache.xbean.spring.context.v2.XBeanNamespaceHandler
+http\://jax-ws.dev.java.net/spring/local-transport=org.apache.xbean.spring.context.v2.XBeanNamespaceHandler
+
+# spring-beans-3.1.0.RELEASE.jar
+http\://www.springframework.org/schema/c=org.springframework.beans.factory.xml.SimpleConstructorNamespaceHandler
+http\://www.springframework.org/schema/p=org.springframework.beans.factory.xml.SimplePropertyNamespaceHandler
+http\://www.springframework.org/schema/util=org.springframework.beans.factory.xml.UtilNamespaceHandler
