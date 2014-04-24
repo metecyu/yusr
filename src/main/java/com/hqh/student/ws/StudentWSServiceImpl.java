@@ -5,7 +5,9 @@ import javax.jws.WebService;
 
 import org.springframework.stereotype.Component;
 
+import com.metecyu.yusr.model.User;
 import com.metecyu.yusr.service.UserService;
+import com.metecyu.yusr.ws.model.WsUser;
   
 
   
@@ -29,7 +31,14 @@ import com.metecyu.yusr.service.UserService;
   
     @Override
     public void SayHi(String name) {
+    	
     	System.out.println("Hi, " + name + "!");
+    }
+    @Override
+    public WsUser getUser(String id) {
+    	User user =this.userService.findById(id);
+    	WsUser ws = this.userService.turnToWsUser(user);
+    	return ws;
     }
     
 

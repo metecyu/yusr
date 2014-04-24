@@ -1,6 +1,5 @@
 package com.metecyu.yusr.service;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,6 +16,7 @@ import com.metecyu.yusr.model.User;
 import com.metecyu.yusr.model.UserDeptRel;
 import com.metecyu.yusr.util.DateCenter;
 import com.metecyu.yusr.webmodel.WUser;
+import com.metecyu.yusr.ws.model.WsUser;
 
 @Service
 public class UserService  {
@@ -208,6 +208,24 @@ public class UserService  {
 		return outList;
 	}
 	
+	
+	public WsUser turnToWsUser(User user){
+		WsUser w = new WsUser();
+		w.setId(user.getId());
+		w.setLoginid(user.getLoginid());
+		w.setUsername(user.getUsername());
+		w.setPassword(user.getPassword());
+		w.setBirthday(user.getBirthday());
+		w.setMobile(user.getMobile());
+		w.setFjh(user.getFjh());
+		w.setFphone(user.getFphone());
+		w.setWorkstate(user.getWorkstate());
+		w.setOrgtype(user.getOrgtype());
+		w.setSfzid(user.getSfzid());
+		w.setDuty(user.getDuty());
+		w.setDutydetails(user.getDutydetails());
+		return w;
+	}
 	
 	
 	
