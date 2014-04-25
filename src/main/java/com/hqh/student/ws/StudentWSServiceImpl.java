@@ -1,13 +1,18 @@
 package com.hqh.student.ws;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.annotation.Resource;
 import javax.jws.WebService;
 
 import org.springframework.stereotype.Component;
 
+import com.metecyu.yusr.bmodel.UserD;
 import com.metecyu.yusr.model.User;
 import com.metecyu.yusr.service.UserService;
 import com.metecyu.yusr.ws.model.WsUser;
+import com.metecyu.yusr.ws.model.WsUserList;
   
 
   
@@ -16,19 +21,14 @@ import com.metecyu.yusr.ws.model.WsUser;
             serviceName="StudentWSService",  
             portName="studentServicePort",  
             targetNamespace="http://ws.student.hqh.com")  
-//该对象交由spring管理，studentWsService即为该实现类在bean容器中的name  
+	//该对象交由spring管理，studentWsService即为该实现类在bean容器中的name  
 	@Component("studentWsService")  
 	public class StudentWSServiceImpl implements IStudentWSService{  
+	
 	@Resource
 	UserService userService;
-//  private static final BeanFactory factory = new ClassPathXmlApplicationContext("beans.xml");  
-//  public StudentWSServiceImpl() {  
-//      if(studentService==null) {  
-//          studentService = factory.getBean(StudentService.class);  
-//      }  
-//  }  
-      
-  
+
+
     @Override
     public void SayHi(String name) {
     	
@@ -42,6 +42,19 @@ import com.metecyu.yusr.ws.model.WsUser;
     }
     
 
-  
+    @Override
+    public WsUserList getDeptUserList(String deptid) {
+    	List<UserD>  userList = userService.findDeptUser(deptid);
+    	ArrayList<WsUser> outList = new ArrayList();
+    	/**/
+    	for(UserD user :userList){
+    		WsUser ws = this.userService.turnToWsUser(user);
+    		outList.add(ws);
+    	}
+    	WsUserList usrList= new WsUserList();
+    	usrList.userList = outList;
+
+    	return usrList;
+    }
   
 }  

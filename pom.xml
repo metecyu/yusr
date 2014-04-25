@@ -136,13 +136,24 @@
 		    </exclusion>  
 		  </exclusions>
 	</dependency>
-	<dependency>
+	<!--
+	 <dependency>
 		<groupId>com.sun.xml.ws</groupId>
 		<artifactId>jaxws-rt</artifactId>
 		<version>2.2.3</version>
+	</dependency> 
+	 -->
+	 <!-- 解决 没有XMLStreamReaderToContentHandler问题 -->
+	<dependency>
+		<groupId>com.sun.istack</groupId>
+		<artifactId>istack-commons-runtime</artifactId>
+		<version>2.2.1</version>
 	</dependency>
+            
+	 
+	 
     </dependencies>
-    
+   
     <build>
         <plugins>
          <plugin>
