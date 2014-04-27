@@ -24,12 +24,12 @@ import javax.xml.namespace.QName;
 @XmlRegistry
 public class ObjectFactory {
 
-    private final static QName _GetUser_QNAME = new QName("http://ws.student.hqh.com/", "getUser");
-    private final static QName _GetDeptUserListResponse_QNAME = new QName("http://ws.student.hqh.com/", "getDeptUserListResponse");
-    private final static QName _SayHiResponse_QNAME = new QName("http://ws.student.hqh.com/", "SayHiResponse");
-    private final static QName _SayHi_QNAME = new QName("http://ws.student.hqh.com/", "SayHi");
-    private final static QName _GetDeptUserList_QNAME = new QName("http://ws.student.hqh.com/", "getDeptUserList");
-    private final static QName _GetUserResponse_QNAME = new QName("http://ws.student.hqh.com/", "getUserResponse");
+    private final static QName _GetDeptUserListResponse_QNAME = new QName("http://ws.yusr.metecyu.com/", "getDeptUserListResponse");
+    private final static QName _GetUser_QNAME = new QName("http://ws.yusr.metecyu.com/", "getUser");
+    private final static QName _GetDeptUserList_QNAME = new QName("http://ws.yusr.metecyu.com/", "getDeptUserList");
+    private final static QName _GetUserResponse_QNAME = new QName("http://ws.yusr.metecyu.com/", "getUserResponse");
+    private final static QName _SayHi_QNAME = new QName("http://ws.yusr.metecyu.com/", "SayHi");
+    private final static QName _SayHiResponse_QNAME = new QName("http://ws.yusr.metecyu.com/", "SayHiResponse");
 
     /**
      * Create a new ObjectFactory that can be used to create new instances of schema derived classes for package: testjws.client
@@ -39,11 +39,27 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link GetUser }
+     * Create an instance of {@link WsUser }
      * 
      */
-    public GetUser createGetUser() {
-        return new GetUser();
+    public WsUser createWsUser() {
+        return new WsUser();
+    }
+
+    /**
+     * Create an instance of {@link SayHi }
+     * 
+     */
+    public SayHi createSayHi() {
+        return new SayHi();
+    }
+
+    /**
+     * Create an instance of {@link SayHiResponse }
+     * 
+     */
+    public SayHiResponse createSayHiResponse() {
+        return new SayHiResponse();
     }
 
     /**
@@ -55,11 +71,11 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SayHiResponse }
+     * Create an instance of {@link WsUserList }
      * 
      */
-    public SayHiResponse createSayHiResponse() {
-        return new SayHiResponse();
+    public WsUserList createWsUserList() {
+        return new WsUserList();
     }
 
     /**
@@ -79,70 +95,36 @@ public class ObjectFactory {
     }
 
     /**
-     * Create an instance of {@link SayHi }
+     * Create an instance of {@link GetUser }
      * 
      */
-    public SayHi createSayHi() {
-        return new SayHi();
-    }
-
-    /**
-     * Create an instance of {@link WsUser }
-     * 
-     */
-    public WsUser createWsUser() {
-        return new WsUser();
-    }
-
-    /**
-     * Create an instance of {@link WsUserList }
-     * 
-     */
-    public WsUserList createWsUserList() {
-        return new WsUserList();
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link GetUser }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.student.hqh.com/", name = "getUser")
-    public JAXBElement<GetUser> createGetUser(GetUser value) {
-        return new JAXBElement<GetUser>(_GetUser_QNAME, GetUser.class, null, value);
+    public GetUser createGetUser() {
+        return new GetUser();
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetDeptUserListResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://ws.student.hqh.com/", name = "getDeptUserListResponse")
+    @XmlElementDecl(namespace = "http://ws.yusr.metecyu.com/", name = "getDeptUserListResponse")
     public JAXBElement<GetDeptUserListResponse> createGetDeptUserListResponse(GetDeptUserListResponse value) {
         return new JAXBElement<GetDeptUserListResponse>(_GetDeptUserListResponse_QNAME, GetDeptUserListResponse.class, null, value);
     }
 
     /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SayHiResponse }{@code >}}
+     * Create an instance of {@link JAXBElement }{@code <}{@link GetUser }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://ws.student.hqh.com/", name = "SayHiResponse")
-    public JAXBElement<SayHiResponse> createSayHiResponse(SayHiResponse value) {
-        return new JAXBElement<SayHiResponse>(_SayHiResponse_QNAME, SayHiResponse.class, null, value);
-    }
-
-    /**
-     * Create an instance of {@link JAXBElement }{@code <}{@link SayHi }{@code >}}
-     * 
-     */
-    @XmlElementDecl(namespace = "http://ws.student.hqh.com/", name = "SayHi")
-    public JAXBElement<SayHi> createSayHi(SayHi value) {
-        return new JAXBElement<SayHi>(_SayHi_QNAME, SayHi.class, null, value);
+    @XmlElementDecl(namespace = "http://ws.yusr.metecyu.com/", name = "getUser")
+    public JAXBElement<GetUser> createGetUser(GetUser value) {
+        return new JAXBElement<GetUser>(_GetUser_QNAME, GetUser.class, null, value);
     }
 
     /**
      * Create an instance of {@link JAXBElement }{@code <}{@link GetDeptUserList }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://ws.student.hqh.com/", name = "getDeptUserList")
+    @XmlElementDecl(namespace = "http://ws.yusr.metecyu.com/", name = "getDeptUserList")
     public JAXBElement<GetDeptUserList> createGetDeptUserList(GetDeptUserList value) {
         return new JAXBElement<GetDeptUserList>(_GetDeptUserList_QNAME, GetDeptUserList.class, null, value);
     }
@@ -151,9 +133,27 @@ public class ObjectFactory {
      * Create an instance of {@link JAXBElement }{@code <}{@link GetUserResponse }{@code >}}
      * 
      */
-    @XmlElementDecl(namespace = "http://ws.student.hqh.com/", name = "getUserResponse")
+    @XmlElementDecl(namespace = "http://ws.yusr.metecyu.com/", name = "getUserResponse")
     public JAXBElement<GetUserResponse> createGetUserResponse(GetUserResponse value) {
         return new JAXBElement<GetUserResponse>(_GetUserResponse_QNAME, GetUserResponse.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SayHi }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.yusr.metecyu.com/", name = "SayHi")
+    public JAXBElement<SayHi> createSayHi(SayHi value) {
+        return new JAXBElement<SayHi>(_SayHi_QNAME, SayHi.class, null, value);
+    }
+
+    /**
+     * Create an instance of {@link JAXBElement }{@code <}{@link SayHiResponse }{@code >}}
+     * 
+     */
+    @XmlElementDecl(namespace = "http://ws.yusr.metecyu.com/", name = "SayHiResponse")
+    public JAXBElement<SayHiResponse> createSayHiResponse(SayHiResponse value) {
+        return new JAXBElement<SayHiResponse>(_SayHiResponse_QNAME, SayHiResponse.class, null, value);
     }
 
 }

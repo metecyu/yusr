@@ -13,13 +13,13 @@
               
     <context:annotation-config/> 
     
-    <context:component-scan base-package="com.hqh.student"/>  
+    <context:component-scan base-package="com.metecyu.yusr"/>  
     <!-- url must same with the url pattern of StudentWsService-WSSpringServlet in web.xml -->  
      <!-- 这个错误是因为xsd的地址访问不到，不影响 -->
     <wss:binding url="/jaxws-spring">
         <wss:service>    
 <!-- bean的值需要加前缀 "#",studentWsService是实现类在bean容器中的名称 -->   
-            <ws:service bean="#studentWsService">  
+            <ws:service bean="#yusrWsSeviceImpl">  
                 <!-- <ws:metadata>  
                     <value>/WEB-INF/wsdl/student.xsd</value>  
                 </ws:metadata>   -->
