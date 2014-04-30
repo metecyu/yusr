@@ -9,30 +9,15 @@
            http://www.springframework.org/schema/context  
            http://www.springframework.org/schema/context/spring-context-3.0.xsd    
            http://jax-ws.dev.java.net/spring/core http://jax-ws.java.net/spring/core.xsd  
-           http://jax-ws.dev.java.net/spring/servlet http://jax-ws.java.net/spring/servlet.xsd ">
-              
+           http://jax-ws.dev.java.net/spring/servlet http://jax-ws.java.net/spring/servlet.xsd ">              
     <context:annotation-config/> 
-    
     <context:component-scan base-package="com.metecyu.yusr"/>  
-    <!-- url must same with the url pattern of StudentWsService-WSSpringServlet in web.xml -->  
      <!-- 这个错误是因为xsd的地址访问不到，不影响 -->
     <wss:binding url="/jaxws-spring">
         <wss:service>    
-<!-- bean的值需要加前缀 "#",studentWsService是实现类在bean容器中的名称 -->   
-            <ws:service bean="#yusrWsSeviceImpl">  
-                <!-- <ws:metadata>  
-                    <value>/WEB-INF/wsdl/student.xsd</value>  
-                </ws:metadata>   -->
+			<!-- bean的值需要加前缀 "#",studentWsService是实现类在bean容器中的名称 -->   
+            <ws:service bean="#yusrWsServiceImpl"> 
             </ws:service>  
         </wss:service>  
-    </wss:binding>  
-      
-    <!-- 手动注入（注：jaxws已经与spring集成起来，那么可以使用注解来注入了，不需要再手动注入！） -->  
-    <!-- Web service methods   
-    <bean id="studentWsService" class="com.hqh.student.ws.StudentWSServiceImpl">  
-        <property name="studentService" ref="StudentService"></property>  
-    </bean>  
-      
-    <bean id="StudentService" class="com.hqh.student.service.StudentServiceImpl"/>  
-    -->    
+    </wss:binding>     
 </beans>

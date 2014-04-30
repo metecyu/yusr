@@ -18,8 +18,8 @@
 	function navDeptUserList(){
 		var deptid = $('#deptid').val();
 		location.href='${ctx}/user/navUserList.do?deptid='+deptid;
-		
 	}
+	
 	$(function(){
 		$('#deptid').val('${deptid}');
 	})

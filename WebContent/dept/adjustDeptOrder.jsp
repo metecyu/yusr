@@ -95,7 +95,7 @@
 			  </div><!-- end right area -->
 		</div>
 		<div class="row">
-			  <%@ include file="/includes/top.jsp"%>
+			  <%@ include file="/includes/footer.jsp"%>
 		</div>
 </div><!-- end container -->
 

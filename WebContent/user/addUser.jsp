@@ -11,16 +11,25 @@
 <link rel="stylesheet" type="text/css" href="../cssGroup/cust/layer.css">
 <link rel="stylesheet" type="text/css" href="../cssGroup/cust/form.css">
 
-
-<link rel="stylesheet" href="../jsGroup/jquery-ui-1.8/themes/base/jquery.ui.all.css" type="text/css"></link>
-<!-- jquery ui 公共 -->
-<script src="../jsGroup/jquery-ui-1.8/jquery-1.8.2.js"></script>
-<script src="../jsGroup/jquery-ui-1.8/ui/jquery.ui.core.js"></script>
-<script src="../jsGroup/jquery-ui-1.8/ui/jquery.ui.widget.js"></script>
-<script src="../jsGroup/jquery-ui-1.8/ui/jquery.effects.core.js"></script>
+<!-- jquery  -->
+<script type="text/javascript" src="${ctx}/jsGroup/jquery1.10/jquery.min.js"></script>
+<!-- dialog确认框 -->
+<link rel="stylesheet" href="${ctx}/jsGroup/jquery-ui-1.10.2/themes/base/jquery.ui.all.css"> 
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.core.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.widget.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.mouse.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.button.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.draggable.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.position.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.button.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.dialog.js"></script>
 <!-- jquery 日期控件 -->
-<script src="../jsGroup/jquery-ui-1.8/ui/jquery.ui.datepicker.js"></script>
-<script src="../jsGroup/jquery-ui-1.8/ui/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+<script src="../jsGroup/jquery-ui-1.10.2/ui/jquery.ui.datepicker.js"></script>
+<script src="../jsGroup/jquery-ui-1.10.2/ui/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+
+
+
+
 
 
 <script>
@@ -172,7 +181,7 @@
 			  </div><!-- end right area -->
 		</div>
 		<div class="row">
-			  <%@ include file="/includes/top.jsp"%>
+			  <%@ include file="/includes/footer.jsp"%>
 		</div>
 </div><!-- end container -->
 

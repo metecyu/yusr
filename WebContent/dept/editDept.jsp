@@ -4,14 +4,28 @@
 <html lang="zh-CN">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>${systemName}</title>
+<title>${systemName}</title> 
 </head>
-<link rel="stylesheet" type="text/css" href="../cssGroup/bootstrap2/css/bootstrap-responsive.min.css">
-<link rel="stylesheet" type="text/css" href="../cssGroup/bootstrap2/css/bootstrap.min.css">
-<link rel="stylesheet" type="text/css" href="../cssGroup/cust/layer.css">
-<link rel="stylesheet" type="text/css" href="../cssGroup/cust/form.css">
-<script type="text/javascript" src="../jsGroup/jquery1.10/jquery.min.js"></script>
+<link rel="stylesheet" type="text/css" href="${ctx}/cssGroup/bootstrap2/css/bootstrap-responsive.min.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/cssGroup/bootstrap2/css/bootstrap.min.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/cssGroup/cust/layer.css">
+<link rel="stylesheet" type="text/css" href="${ctx}/cssGroup/cust/form.css">
+<script type="text/javascript" src="${ctx}/jsGroup/jquery1.10/jquery.min.js"></script>
 
+<!-- dialog确认框 -->
+<link rel="stylesheet" href="${ctx}/jsGroup/jquery-ui-1.10.2/themes/base/jquery.ui.all.css"> 
+<!-- 	<script src="../jsGroup/jquery-ui-1.10.2/jquery-1.9.1.js"></script> -->
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.core.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.widget.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.mouse.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.button.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.draggable.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.position.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.button.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.dialog.js"></script>
+
+  
+  
 <script>
 	function submitForm(){
 		var form = document.form1;
@@ -19,20 +33,25 @@
 		form.submit()
 	}
 	function submitDel(){
-		var isDo = confirm("是否删除部门？")
-		if(isDo){
 			var form = document.form1;
 			form.action='${ctx}/dept/submitDelDept.do';
 			form.submit()	
-		}
-		 
 	}
-	
-	
-	
 	$(function(){
 		$('#deptprop').val(${dept.type});
+		
+		
+		$( "#dialog-confirm" ).dialog({
+		      resizable: false,
+		      autoOpen: false,
+		      modal: true		      
+		});
 	}); 
+	
+	function navSubmitDel(){
+		$("#dialog-confirm").dialog( "open" );  
+	}
+
 
 	
 </script>
@@ -62,7 +81,7 @@
 			              <label for="deptname" class="control-label">部门名称</label>
 			              <div class="controls">
 			                <input name='deptname' type="text" placeholder="部门名称" id="deptname" value='${dept.deptname}'>
-			                <button type="button" class="btn btn-inverse pull-right" style='margin-left:90px' onclick='submitDel()'>删除</button>
+			                <button type="button" class="btn btn-danger pull-right" style='margin-left:90px' onclick='navSubmitDel()'>删除</button>
 			              </div>
 			              
 			            </div>
@@ -106,9 +125,23 @@
 			  </div><!-- end right area -->
 		</div>
 		<div class="row">
-			  <%@ include file="/includes/top.jsp"%>
+			  <%@ include file="/includes/footer.jsp"%>  
 		</div>
 </div><!-- end container -->
+
+<div id="dialog-confirm" title="确认框">
+  	<div style='margin-top:30px;text-align:center'><h4 >是否删除？</h4></div>
+  	<div style='margin-top:30px;text-align:center' > 
+  		<button type="button" class="btn btn-danger" onclick='{
+  			submitDel(); 
+  		}'>确认删除</button> 
+  		<button type="button" class="btn" style='margin-left:30px' onclick='{
+  			$("#dialog-confirm").dialog( "close" );  			
+  		}'>取消</button>
+  	</div>
+</div>
+
+
 
 </body>
 </html>

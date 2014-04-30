@@ -56,11 +56,11 @@
   
   <!-- 使用spring提供的对jax的支持 -->  
 	<servlet>  
-	    <servlet-name>StudentWsService-WSSpringServlet</servlet-name>  
+	    <servlet-name>springWsServlet</servlet-name>  
 	    <servlet-class>com.sun.xml.ws.transport.http.servlet.WSSpringServlet</servlet-class>  
 	</servlet>  
 	<servlet-mapping>  
-	    <servlet-name>StudentWsService-WSSpringServlet</servlet-name>  
+	    <servlet-name>springWsServlet</servlet-name>  
 	    <url-pattern>/jaxws-spring</url-pattern>  
 	</servlet-mapping>  
 

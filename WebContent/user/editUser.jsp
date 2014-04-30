@@ -12,54 +12,79 @@
 <link rel="stylesheet" type="text/css" href="../cssGroup/cust/form.css">
 
 
-<link rel="stylesheet" href="../jsGroup/jquery-ui-1.8/themes/base/jquery.ui.all.css" type="text/css"></link>
-<!-- jquery ui 公共 -->
-<script src="../jsGroup/jquery-ui-1.8/jquery-1.8.2.js"></script>
-<script src="../jsGroup/jquery-ui-1.8/ui/jquery.ui.core.js"></script>
-<script src="../jsGroup/jquery-ui-1.8/ui/jquery.ui.widget.js"></script>
-<script src="../jsGroup/jquery-ui-1.8/ui/jquery.effects.core.js"></script>
+<!-- jquery  -->
+<script type="text/javascript" src="${ctx}/jsGroup/jquery1.10/jquery.min.js"></script>
+<!-- dialog确认框 -->
+<link rel="stylesheet" href="${ctx}/jsGroup/jquery-ui-1.10.2/themes/base/jquery.ui.all.css"> 
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.core.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.widget.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.mouse.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.button.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.draggable.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.position.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.button.js"></script>
+<script src="${ctx}/jsGroup/jquery-ui-1.10.2/ui/jquery.ui.dialog.js"></script>
 <!-- jquery 日期控件 -->
-<script src="../jsGroup/jquery-ui-1.8/ui/jquery.ui.datepicker.js"></script>
-<script src="../jsGroup/jquery-ui-1.8/ui/i18n/jquery.ui.datepicker-zh-CN.js"></script>
+<script src="../jsGroup/jquery-ui-1.10.2/ui/jquery.ui.datepicker.js"></script>
+<script src="../jsGroup/jquery-ui-1.10.2/ui/i18n/jquery.ui.datepicker-zh-CN.js"></script>
 
 
 <script>
+	var delType = 1;//1:删除用户  2：从部门删除用户
 	function submitAdd(){
-		
 		var form = document.form1;
 		form.action='${ctx}/user/submitEditUser.do';
 		form.submit()
 	}
 	
+	// 删除用户
 	function submitDel(){
-		var isDo = confirm("是否删除用户？")
-		if(isDo){
-			var form = document.form1;
-			form.action='${ctx}/user/submitDelUser.do'; 
-			form.submit()	
-		}
-		  
+		var form = document.form1;
+		form.action='${ctx}/user/submitDelUser.do'; 
+		form.submit()	
 	}
+	function navSubmitDel(){
+		delType = 1;
+		$("#dialog-confirm").dialog( "open" );  
+	}
+	
+	
+	// 从部门中删除用户
 	function submitDelUserFromDept(){
-		var isDo = confirm("是否删除用户222？")
-		if(isDo){ 
-			var form = document.form1;
-			form.action='${ctx}/user/submitDelUserFromDept.do';
-			form.submit()	
+		var form = document.form1;
+		form.action='${ctx}/user/submitDelUserFromDept.do';
+		form.submit()	
+	}
+	function navSubmitDelUserFromDept(){
+		delType = 2;
+		$("#dialog-confirm").dialog( "open" );  
+	}
+	// 根据类型删除用户
+	function submitDelUserByType(){
+		if(delType==1){
+			submitDel();
+		}else if(delType==2){
+			submitDelUserFromDept();
 		}
-		 
 	}
 	
-	
-	
+	// 初始化
 	$(function(){
 		$("#birthday").datepicker({firstDay:0});
 		var oDate1 = new Date();
 		$('#birthday').datepicker("setDate", oDate1 );
 		
-		 $('#mainDeptid').val('${mainDeptid}');
+		$('#mainDeptid').val('${mainDeptid}');
 		$('#workstate').val('${user.workstate}');
 		$('#orgtype').val('${user.orgtype}');
+		
+		
+		$( "#dialog-confirm" ).dialog({
+		      resizable: false,
+		      autoOpen: false,
+		      modal: true		      
+		});
+		
 		
 	}); 
 
@@ -95,10 +120,10 @@
 			  			 
 			  			 <c:choose>
 						    <c:when test="${isDisDelFromDept=='y'}">
-						      <button type="button" class="btn btn-inverse pull-right" style='margin-left:90px' onclick='submitDelUserFromDept()'>从部门中删除</button> 
+						      <button type="button" class="btn btn-danger pull-right" style='margin-left:90px' onclick='navSubmitDelUserFromDept()'>从部门中删除</button> 
 						    </c:when>
 						   <c:otherwise>
-						       <button type="button" class="btn btn-inverse pull-right" style='margin-left:90px' onclick='submitDel()'>删除</button>
+						       <button type="button" class="btn btn-danger pull-right" style='margin-left:90px' onclick='navSubmitDel()'>删除</button>
 						   </c:otherwise>
 						</c:choose>
 
@@ -209,11 +234,24 @@
 			     </form>
 			  	</div><!-- end content -->
 			  </div><!-- end right area -->
-		</div>
+		</div>  
 		<div class="row">
-			  <%@ include file="/includes/top.jsp"%>
+			  <%@ include file="/includes/footer.jsp"%>
 		</div>
 </div><!-- end container -->
+
+
+<div id="dialog-confirm" title="确认框" style='display:none'>
+  	<div style='margin-top:30px;text-align:center'><h4 >是否删除？</h4></div>
+  	<div style='margin-top:30px;text-align:center' > 
+  		<button type="button" class="btn btn-danger" onclick='{
+  			submitDelUserByType(); 
+  		}'>确认删除</button> 
+  		<button type="button" class="btn" style='margin-left:30px' onclick='{
+  			$("#dialog-confirm").dialog( "close" );  			
+  		}'>取消</button>
+  	</div>
+</div>
 
 </body>
 </html>

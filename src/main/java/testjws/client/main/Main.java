@@ -1,36 +1,27 @@
 package testjws.client.main;
-
 import testjws.client.WsUser;
 import testjws.client.WsUserList;
-import testjws.client.YusrWsSevice;
-import testjws.client.YusrWsSeviceItf;
+import testjws.client.YusrWsService;
+import testjws.client.YusrWsServiceItf;
 
 public class Main {
 
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 		
-		
-		YusrWsSeviceItf service = new YusrWsSevice().getYusrWsSevicePort();		
+		YusrWsServiceItf service = new YusrWsService().getYusrWsServicePort();		
 		long st = System.currentTimeMillis();
-		// 基本类型
-		service.sayHi("出搓");
-		
 		// 自定义单个对象定义
 		WsUser user = service.getUser("yh1");
 		System.out.println("用户姓名："+user.getUsername());
 		long end = System.currentTimeMillis();
-		System.out.println(end -st);
+		System.out.println("用时："+(end -st));		
+		
 		// 列表对象
 		WsUserList wsUserList = service.getDeptUserList("dept1");
-		System.out.println(wsUserList.getUserList().size());
+		System.out.println("\n部门用户数量："+ wsUserList.getUserList().size());
 		for(WsUser usr : wsUserList.getUserList()){
 			System.out.println(usr.getUsername());
 		}
-		
-		
 	}
 
 }
