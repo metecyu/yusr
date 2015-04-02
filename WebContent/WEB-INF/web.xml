@@ -65,7 +65,28 @@
 	</servlet-mapping>  
 
 
-  	
+  	    <servlet>  
+        <servlet-name>JerseyServlet</servlet-name>  
+        <servlet-class>com.sun.jersey.spi.spring.container.servlet.SpringServlet</servlet-class>  
+      
+        <init-param>  
+            <param-name>com.sun.jersey.config.property.packages</param-name>  
+            <param-value>com.example</param-value>  
+        </init-param>  
+        <init-param>  
+            <param-name>com.sun.jersey.api.json.POJOMappingFeature</param-name>  
+            <param-value>true</param-value>  
+        </init-param>  
+        <load-on-startup>1</load-on-startup>  
+    </servlet>  
+    <servlet-mapping>
+        <servlet-name>JerseyServlet</servlet-name>
+        <url-pattern>/rest/*</url-pattern>
+    </servlet-mapping>
+    
+    
+    
+    
   <!--
   <filter>
 	  <filter-name>CAS Filter</filter-name>

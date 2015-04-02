@@ -16,7 +16,7 @@ import javax.xml.ws.WebServiceException;
  * Generated source version: 2.0
  * 
  */
-@WebServiceClient(name = "yusrWsService", targetNamespace = "http://ws.yusr.metecyu.com", wsdlLocation = "http://localhost:8080/yusr/jaxws-spring?wsdl")
+@WebServiceClient(name = "yusrWsService", targetNamespace = "http://ws.yusr.metecyu.com", wsdlLocation = "http://127.0.0.1:8080/yusr/jaxws-spring?wsdl")
 public class YusrWsService
     extends Service
 {
@@ -29,7 +29,7 @@ public class YusrWsService
         URL url = null;
         WebServiceException e = null;
         try {
-            url = new URL("http://localhost:8080/yusr/jaxws-spring?wsdl");
+            url = new URL("http://127.0.0.1:8080/yusr/jaxws-spring?wsdl");
         } catch (MalformedURLException ex) {
             e = new WebServiceException(ex);
         }
