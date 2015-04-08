@@ -18,7 +18,7 @@
 			<artifactId>hibernate</artifactId>
 			<version>3.2.6.ga</version>
 		</dependency>
-
+  
 		<!-- hinbernate 需要 [yzp] -->
 		<dependency>
 			<groupId>commons-lang</groupId>
@@ -32,9 +32,6 @@
 			<artifactId>mysql-connector-java</artifactId>
 			<version>5.1.9</version>
 		</dependency>
-
-
-
 
 		<!-- sping 3 基础[yzp] -->
 		<dependency>
@@ -119,7 +116,7 @@
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
 			<version>2.4</version>
-			<scope>test</scope>
+			<!-- --><scope>provided</scope> 
 		</dependency>
 		<dependency>
 			<groupId>javax.servlet</groupId>
@@ -192,9 +189,21 @@
             <artifactId>jersey-json</artifactId>
             <version>1.19</version>
         </dependency>
-        
+        <!-- 第三方-手动添加jar文件 -->
+        <dependency>
+		  <groupId>pingyin4j</groupId>
+		  <artifactId>pingyin4j</artifactId>
+		  <version>2.5.0</version>
+		</dependency>
+		
+		<dependency>
+		  <groupId>HTTPClient</groupId>
+		  <artifactId>HTTPClient</artifactId>
+		  <version>0.3-3</version>
+		</dependency>
+		
 	</dependencies>
-
+	<!-- 构建插件  -->
 	<build>
 		<plugins>
 			<plugin>
@@ -202,10 +211,33 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.12</version>
 				<configuration>
+				
 					<argLine>-Dfile.encoding=UTF-8</argLine>
 					<forkMode>always</forkMode>
-				</configuration>
+					<skipTests>true</skipTests> <!-- 跳过测试case -->
+				
+				</configuration>  
 			</plugin>
 		</plugins>
 	</build>
+	
+	<!-- 私服发布地址  -->
+	 <distributionManagement>
+		<repository>
+			<id>releases</id>
+			<name>public</name>
+			<url>http://localhost:8081/nexus/content/repositories/releases</url>
+		</repository>
+		<snapshotRepository>
+			<id>snapshots</id>
+			<name>Snapshots</name>
+			<url>http://localhost:8081/nexus/content/repositories/snapshots</url>
+		</snapshotRepository>
+	</distributionManagement> 
+	
+	
+	 <!-- 文件编码 -->	 
+	 <properties>
+     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+     </properties>
 </project>
